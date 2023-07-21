@@ -1,6 +1,6 @@
 
 import { Radar, RadarChart, PolarGrid, PolarAngleAxis,  ResponsiveContainer } from 'recharts';
-import './charts.css';
+import styles from  './charts.module.scss';
 
 
 type RadarChartExampleProps = {

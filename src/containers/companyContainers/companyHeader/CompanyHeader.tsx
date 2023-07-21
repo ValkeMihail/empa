@@ -1,7 +1,7 @@
 import { ArrowUpwardTwoTone, Square } from "@mui/icons-material"
 import { ChartComponent } from "../../../components/charts/LineChart"
 import { Pie, PieChart } from "recharts"
-import "./companyHeader.css"
+import styles from  "./companyHeader.module.scss"
 
 
 type CompanyHeaderProps = {

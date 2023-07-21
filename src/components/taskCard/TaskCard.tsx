@@ -1,6 +1,6 @@
 import { EmployeeData } from "../../../types"
 import { GroupAvatars } from "../groupAvatars/GroupAvatars"
-import "./taskCard.css"
+import styles from  "./taskCard.module.scss"
 
 type TaskCardProps = {
   employeeList : EmployeeData[]

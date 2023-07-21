@@ -4,7 +4,7 @@ import dayGridPlugin from '@fullcalendar/daygrid';
 import { SelectLabels } from '../select/Select';
 import { SelectChangeEvent } from '@mui/material';
 import { WorkTask } from '../../../types';
-import './calendar.css';
+import styles from  './calendar.module.scss';
 
 type CalendarProps = {
   worktasks: WorkTask[];

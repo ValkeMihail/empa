@@ -1,7 +1,7 @@
 import { EmployeeData } from '../../../../types';
 import { ChartComponent } from '../../../components/charts/LineChart';
 import { RadarChartExample } from '../../../components/charts/RadarChart';
-import './employeeleftsection.css';
+import styles from  './employeeLeftSection.module.scss';
 
 type EmployeeInfoProps = {
   employeeData: EmployeeData;

@@ -1,5 +1,5 @@
 import { LineChart, Line, XAxis, YAxis,  Tooltip } from 'recharts';
-import './charts.css';
+import styles from  './charts.module.scss';
 
 type ChartComponentProps = {
     employeePerformance: {

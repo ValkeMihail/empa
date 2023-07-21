@@ -5,7 +5,7 @@ import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
 import { ProjectData, WorkTask } from '../../../types';
 import { CircularProgressWithLabel } from '../circularProgress/CircularProgressWithLabel';
-import './accordion.css';
+import styles from  './accordion.module.scss';
 import { VerticalLinearStepper } from '../verticalStepper/VerticalStepper';
 
 type CustomizedAccordionProps = {

@@ -1,6 +1,6 @@
 import { ArrowDropDown } from "@mui/icons-material"
 import { useState } from "react"
-import styles from './artificialScroll.module.css';
+import styles from './artificialScroll.module.scss';
 
 type ArtificialScrollProps = {
   scrollToNextRef  : (nr : number) => void;

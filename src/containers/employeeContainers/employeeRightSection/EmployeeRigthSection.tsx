@@ -3,7 +3,7 @@ import { Calendar } from "./../../../components/calendar/Calendar";
 import { ProjectData, WorkTask } from "../../../../types";
 import { LinearProgress } from "@mui/material";
 import { styled } from "@mui/system";
-import "./employeeright.css";
+import styles from  "./employeeright.module.scss";
 import { EmployeeRecentProjectCard } from "../employeeRecentProject/RecentProjectCard";
 
 type EmployeeProjectProps = {

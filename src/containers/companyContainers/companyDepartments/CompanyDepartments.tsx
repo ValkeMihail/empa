@@ -1,7 +1,7 @@
 import {  ArrowLeft, ArrowRight} from "@mui/icons-material";
 import { useRef, useState , useEffect } from "react";
 import { animateScroll as scroll } from "react-scroll";
-import "./companyDepartments.css";
+import styles from  "./companyDepartments.module.scss";
 import { DepartmentData } from "../../../../types";
 
 

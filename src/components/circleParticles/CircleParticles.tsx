@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import styles from  './circleparticles.module.css';
+import styles from  './circleParticles.module.scss';
 
 const CircleParticles: React.FC = () => {
   useEffect(() => {

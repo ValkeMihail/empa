@@ -1,9 +1,9 @@
 import { EmployeeData, ProjectData, WorkTask } from "../../../../types";
 import { EmployeeRigthSection } from "../employeeRightSection/EmployeeRigthSection";
 import { EmployeeLeftSection } from "../employeeLeftSection/EmployeeLeftSection";
+import styles from './employeeheader.module.scss';
 
 
-import './employeeheader.css';
 
 
 type EmployeeHeaderProps = {

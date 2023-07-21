@@ -2,7 +2,7 @@
 import CircularProgress, {
   CircularProgressProps,
 } from '@mui/material/CircularProgress';
-import './circularprogress.css';
+import styles from  './circularProgress.module.scss';
 
 export const CircularProgressWithLabel = ( props: CircularProgressProps & { value: number },) => {
   return (

@@ -1,7 +1,6 @@
 
 import CollapsibleTable from "../../../components/table/Table"
-import "./companyProjects.css"
-
+import styled from "./companyProjects.module.scss"
 
 export const CompanyProjects = () => {
 
