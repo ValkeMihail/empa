@@ -1,0 +1,116 @@
+.manageCointainer {
+  width: 80vw;
+  justify-content: space-between;
+  height: 93vh;
+  min-height: 90vh;
+  padding: 0;
+  border-radius: 3em;
+  overflow: hidden;
+  box-shadow: 5px 5px 5px black;
+  background-color: #1fd6ff25;
+
+  .mainHero {
+    width: 50%;
+  }
+
+  .mainHero .heroImg {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .sectionContent {
+    align-items: center;
+    justify-content: center;
+    margin: 0 4vw;
+    font-size: 2vw;
+      text-align: left;
+    width: 40%;
+
+    p {
+      font-size: 2.5vh;
+      font-weight: 600;
+      margin: 1em 0;
+    }
+  }
+}
+
+
+
+.pricingSection {
+  align-items: flex-start;
+  justify-content: center;
+  width: 80%;
+  height: 93vh;
+  border: 1px solid black;
+  box-shadow: 5px 5px 5px black;
+  padding: 2vh 0;
+  background-color: #1fd6ff25;
+  border-radius: 2.5vw;
+  overflow: hidden;
+  gap: 2vw;
+  font-size: 2.5vh;
+
+  .pricingColumn {
+
+    border-right: 1px dashed black;
+    width: 33%;
+    align-items: flex-start;
+    justify-content: space-between;
+    height: 100%;
+    font-weight: 600;
+    padding: 0 2vw;
+  
+    &:last-child {
+      border-right: none;
+    }                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                       
+  }
+  .freePricing {
+    color: black;
+    text-shadow: 1px 1px 1px white;
+      margin-top: 10vh;
+  }
+
+  .premiumPricing {
+    color: #7eef9f;
+    margin-top: 10vh;
+    text-shadow: 1px 1px 1px black;
+  }
+
+  .enterprisePricing {
+    color: aqua;
+      margin-top: 10vh;
+    text-shadow: 1px 1px 1px black;
+  }
+
+  .pricingButton {
+
+    color: black;
+    width: 15vw;
+    font-weight: 600;
+    font-size: 2vh;
+    padding: 1em 2em;
+    margin-bottom: 5vh;
+    border-radius: 5px;
+    box-shadow: 3px 2px 2px black;
+    transition: background-color 1s ease;
+
+    &:hover {
+      box-shadow: 5px 5px 5px black;
+    }
+  }
+
+  .freeButton {
+    background-color: white;
+  }
+
+  .premiumButton {
+    background-color: #7eef9f;
+    color: black;
+  }
+
+  .enterpriseButton {
+    background-color: rgb(4, 212, 212);
+    color: black;
+  }
+}

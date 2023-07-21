@@ -1,0 +1,133 @@
+
+.companyHeader{
+  width: 100vw;
+  font-size: 1vw !important;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  margin-top: 10vh;
+
+
+  .leftHeader{
+    width: 40%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+
+    .headerStats{
+      width: 100%;
+      height: 20%;
+      
+      align-items: center;
+      justify-content: space-around;
+
+
+      .stat{
+        width: 30%;
+        height: 70%;
+        align-items: center;
+        justify-content: center;
+        gap: 2vw;
+    
+        .statInfo{
+          align-items: center;
+          justify-content: center;
+          gap: 1vh;
+
+          h3{
+            margin: 0;
+          }
+          p{
+            margin: 0;  
+          }
+        }
+        .arrowStatWrap{
+          border: 1px solid black;
+          border-radius: 1vh;
+          align-items: center;
+          justify-content: center;
+          height: 5vh;
+          width: 5vh;
+        }
+      }
+    }
+    .headerChart{
+      width: 100%;
+      height: 80%;
+
+      .headerChartContainer{
+        height: 90%;
+        padding: 0 2vw;
+        align-items: center;
+        
+        overflow: hidden;
+      }
+
+      .headerChartTitleWrap{
+        height: 10%;
+        align-items: center;
+        padding: 0 2vw;
+        overflow: hidden;
+        justify-content: space-between;
+
+        .yearsWrap{
+          gap: 2vw;
+
+          .yearWrap{
+            align-items: center;
+            gap: 0.5vw;
+            justify-content: center;
+          }
+        }
+      }
+
+    }
+  }
+  .rightHeader{
+    width: 40%;
+    height: 100%;
+    align-items: center;
+    justify-content: space-around;
+
+
+    .chartContainer{
+      width: 100%;
+      height: 80%;
+      align-items: center;
+      justify-content: center;
+
+    }
+    .headerStatsGraph{
+      align-items: center;
+      justify-content: center;
+      width: 100%;
+      height: 20%;
+
+      .chartStats{
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        height: 100%;
+
+
+        .statsWrap{
+          width: 100%;
+          height: 100%;
+          align-items: center;
+          justify-content: center;
+
+
+          .statWrap{
+            align-items: center;
+            justify-content: center;
+            gap: 1vw;
+          }
+        }
+
+      }
+
+    }
+  }
+
+
+}

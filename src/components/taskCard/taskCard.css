@@ -1,0 +1,25 @@
+.taskCard {
+  background: lightgray;
+  border: 1px solid black;
+  border-radius: 1vw;
+}
+.taskCard .priorityAssigneesWrap {
+  margin: 1vw 0 0 1vw;
+}
+.taskCard .taskHeader {
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+.taskCard .taskHeader h4, .taskCard .taskHeader h3, .taskCard .taskHeader p {
+  text-align: left;
+  margin: 1vw 0 0 1vw;
+}
+.taskCard .taskHeader p {
+  font-size: 0.8vw;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  word-break: break-all;
+  word-wrap: break-word;
+}/*# sourceMappingURL=taskCard.css.map */

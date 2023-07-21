@@ -1,0 +1,69 @@
+.leftSideSection {
+  width: 30%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--primary-color-light);
+  border: 1px dotted var(--secondary-color);
+  border-radius: 1.5em;
+
+  .employeeCard {
+    justify-content: space-between;
+    align-items: center;
+    width: 90%;
+    margin-top: 1em;
+
+    .employeeCardRight {
+      width: 9em;
+      height: 9em;
+      overflow: hidden;
+      justify-content: space-between;
+      align-items: center;
+      align-self: flex-start;
+
+      img {
+        width: 100%;
+        height: 100%;
+        -o-object-fit: cover;
+        object-fit: cover;
+        border-radius: 50%;
+      }
+    }
+
+    .employeeCardLeft {
+      gap: 0;
+      justify-content: start;
+      align-items: flex-start;
+
+      .headerEmployeeCard {
+        margin: 0;
+      }
+
+      .emailSpan {
+        font-size: 0.8em;
+        margin-bottom: 1em;
+      }
+
+      .roleSpan {
+        margin-top: 0.8em;
+      }
+
+      .startDateSpan {
+        margin-top: 2em;
+      }
+    }
+  }
+}
+
+
+.iconWrap {
+  width: 1.75em;
+  height: 1.75em;
+  border-radius: 50%;
+  justify-content: center;
+  align-items: center;
+  background-color: var(--accent-color);
+  margin-right: 1em;
+}
+
+/*# sourceMappingURL=employeeinfo.css.map */

@@ -1,0 +1,63 @@
+.rightSideSection {
+  width: 70%;
+  gap: 1.75em;
+  height: 100%;
+  justify-content: space-between;
+  align-items: space-between;
+
+  ::-webkit-scrollbar-thumb {
+    background-color: var(--secondary-color) !important;
+    border-radius: 4px;
+  }
+
+  .bottomCard {
+    width: 100%;
+    height: 80%;
+    border-radius: 1.5em;
+    background-color: var(--primary-color-light);
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+
+    button {
+      background-color: var(--accent-color) !important;
+    }
+  }
+
+  .topCards {
+    width: 100%;
+    margin-top: 0.75em;
+    height: 20%;
+    gap: 1em;
+    justify-content: space-between;
+    align-items: center;
+
+    .card {
+      width: 32%;
+      height: 100%;
+      background-color: var(--primary-color-light);
+      border: 1px dotted var(--secondary-color);
+      padding: 0.7em;
+      justify-content: space-around;
+      align-items: center;
+      border-radius: 1.5em;
+
+      .projectsInProgressHeader {
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      .projectsInProgress {
+        .projectsCount {
+          font-size: 1.75em;
+        }
+
+        .progressBar {
+          width: 10em !important;
+          height: 0.45em !important;
+          border-radius: 0 !important;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,9 @@
+.employeeHeader {
+  width: 80vw;
+  height: 85vh;
+  margin: 1em auto 0 auto;
+  border-radius: 1em;
+  gap: 1em;
+  justify-content: space-between;
+  align-items: top;
+}/*# sourceMappingURL=employeeheader.css.map */

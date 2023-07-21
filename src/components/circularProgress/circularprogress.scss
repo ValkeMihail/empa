@@ -1,0 +1,17 @@
+.circularProgress {
+  justify-content: flex-start;
+  align-items: flex-start;
+  position: relative;
+  padding: 0 !important;
+  width: 2.5em;
+
+  .absoluteHeader {
+    position: absolute;
+    top: 1em;
+    left: 0;
+    font-size: 0.75em;
+    right: 0;
+    margin: 0 !important;
+    padding: 0 !important;
+  }
+}
