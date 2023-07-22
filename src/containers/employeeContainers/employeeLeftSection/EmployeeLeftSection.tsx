@@ -11,34 +11,34 @@ type EmployeeInfoProps = {
 export const EmployeeLeftSection = ({employeeData} : EmployeeInfoProps ) => {
 
   return (
-    <section className="leftSideSection flexColumn">
-      <div className="flexRow employeeCard">
-        <div className="flexColumn employeeCardLeft">
-          <h3 className="headerEmployeeCard">
-            {employeeData.name}
+    <section className={`${styles.leftSideSection} flexColumn`}>
+      <div className={`${styles.employeeCard} flexRow`}>
+        <div className={`${styles.employeeCardLeft} flexColumn`}>
+          <h3 className={styles.headerEmployeeCard}>
+            {employeeData.employeeName}
           </h3>
-          <span className="emailSpan">
-            {employeeData.email}
+          <span className={styles.emailSpan}>
+            {employeeData.employeeEmail}
           </span>
-          <span className="roleSpan">
-            {employeeData.role}
+          <span className={styles.roleSpan}>
+            {employeeData.employeeRole}
           </span>
-          <span className="startDateSpan">
-            {employeeData.startDate}
+          <span className={styles.startDateSpan}>
+            {employeeData.employeeStartDate}
           </span>
         </div>
-          <div className="flexColumn employeeCardRight">
+          <div className={`${styles.employeeCardRight} flexColumn`}>
             <img 
-              src={employeeData.photo}
+              src={employeeData.employeePhoto}
               alt="employee photo" 
             />
           </div>
       </div>
-        <div className='lineChart flexRow'>
-          <ChartComponent employeePerformance={employeeData.performance} />
+        <div className={`${styles.lineChart} flexRow`}>
+          <ChartComponent employeePerformance={employeeData.employeePerformance} />
         </div>
-        <div className='radarChart'>
-          <RadarChartExample employeeAttributes={employeeData.attributes} />                    
+        <div className={styles.radarChart}>
+          <RadarChartExample employeeAttributes={employeeData.employeeAttributes} />                    
         </div>
     </section>
 

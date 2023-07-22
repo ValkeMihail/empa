@@ -1,5 +1,4 @@
 import { ArrowDownwardRounded } from "@mui/icons-material"
-import CircleParticles from "../../../components/circleParticles/CircleParticles"
 import heroPng from '../../../assets/hero.png';
 import { animateScroll as scroll } from 'react-scroll';
 import styles from './homeHeader.module.scss';
@@ -32,7 +31,6 @@ export const HomeHeader = ( { headerRef, pricesRef, projectsRef } : HomeHeaderPr
       className={`${styles.homeHeader} flexRow`}>
       <div className={styles.heroImgWrap}>
         <Image className={styles.heroImg} alt="hero image" src={heroPng} />
-        <CircleParticles/>
       </div>
       <div className={styles.heroFrontground}>
         <h1>

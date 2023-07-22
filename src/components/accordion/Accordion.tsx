@@ -3,14 +3,14 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ProjectData, WorkTask } from '../../../types';
+import { ProjectData, TaskData } from '../../../types';
 import { CircularProgressWithLabel } from '../circularProgress/CircularProgressWithLabel';
 import styles from  './accordion.module.scss';
 import { VerticalLinearStepper } from '../verticalStepper/VerticalStepper';
 
 type CustomizedAccordionProps = {
   projects:ProjectData[];
-  tasks: WorkTask[];
+  tasks: TaskData[];
 }
 
 export const CustomizedAccordion = ({projects, tasks} : CustomizedAccordionProps) => {
@@ -18,7 +18,7 @@ export const CustomizedAccordion = ({projects, tasks} : CustomizedAccordionProps
     <div className='flexColumn accordionsContainer'>
       {
         projects?.map((project,index) => (
-          <Accordion key={project.id}>
+          <Accordion key={project._id}>
           <AccordionSummary
             expandIcon={<ExpandMoreIcon />}
             aria-controls={`panel${index}a-content`}
@@ -26,20 +26,20 @@ export const CustomizedAccordion = ({projects, tasks} : CustomizedAccordionProps
           >
             <div className='accordionHeader flexColumn'>
               <CircularProgressWithLabel
-              value={project.status}
+              value={project.projectCompletion}
               />
               <div className='flexRow titleWrap'>
                 <h3>
-                  {project.name}
+                  {project.projectName}
                 </h3>
               </div>
             </div>
           </AccordionSummary>
           <AccordionDetails>
             <div className='accordionContent flexColumn'>
-              <img className='iconWrap' src={project.photo} alt="project photo" />
+              <img className='iconWrap' src={project.projectPhoto} alt="project photo" />
               <h3>
-                {project.description}
+                {project.projectDescription}
               </h3>
               <div className='projectTasks flexColumn'>
               <VerticalLinearStepper tasks={tasks}/>

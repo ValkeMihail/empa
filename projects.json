@@ -1,0 +1,107 @@
+[
+  {
+    "_id": "projectId1",
+    "projectName": "Jumblee",
+    "projectDescription": "A platform for people to share their ideas and collaborate with others",
+    "projectStartDate": "Timestamp",
+    "projectEndDate": "Timestamp",
+    "projectStatus": "In progress",
+    "projectCompletion": 40,
+    "projectPhoto": "https://picsum.photos/id/112/200/200",
+    "assigned" : [
+      "employeeId1",
+      "employeeId2"
+    ],
+    "tasks": [ 
+      {
+        "id": "task1",
+        "title": "Implement Login Page",
+        "start": "2023-07-23T09:00:00",
+        "end": "2023-07-23T17:00:00",
+        "allDay": false,
+        "groupId": "project1",
+        "url": "/tasks/task1",
+        "interactive": true,
+        "extendedProps": {
+          "employeeId": "employeeId1",
+          "projectId": "project1",
+          "description": "Implement the login page with authentication functionality.",
+          "status": "In Progress",
+          "priority": "High",
+          "progress": 50
+        }
+      },
+      {
+        "id": "task2",
+        "title": "Update UI Components",
+        "start": "2023-07-25T09:00:00",
+        "end": "2023-07-25T17:00:00",
+        "allDay": false,
+        "groupId": "project2",
+        "url": "/tasks/task2",
+        "interactive": true,
+        "extendedProps": {
+          "employeeId": "employeeId2",
+          "projectId": "project2",
+          "description": "Update and refactor existing UI components for better performance.",
+          "status": "Not Started",
+          "priority": "Medium",
+          "progress": 0
+        }
+      }
+     ]
+  },
+
+  {
+    "_id": "projectId2",
+    "projectName": "SmartHome",
+    "projectDescription": "A smart home automation system for controlling devices remotely.",
+    "projectStartDate": "Timestamp",
+    "projectEndDate": "Timestamp",
+    "projectStatus": "In progress",
+    "projectCompletion": 60,
+    "projectPhoto": "https://picsum.photos/id/112/200/200",
+    "assigned" : [
+      "employeeId1",
+      "employeeId2"
+    ],
+    "tasks": [ 
+      {
+        "id": "task1",
+        "title": "Implement Login Page",
+        "start": "2023-07-23T09:00:00",
+        "end": "2023-07-23T17:00:00",
+        "allDay": false,
+        "groupId": "project1",
+        "url": "/tasks/task1",
+        "interactive": true,
+        "extendedProps": {
+          "employeeId": "employeeId1",
+          "projectId": "project1",
+          "description": "Implement the login page with authentication functionality.",
+          "status": "In Progress",
+          "priority": "High",
+          "progress": 50
+        }
+      },
+      {
+        "id": "task2",
+        "title": "Update UI Components",
+        "start": "2023-07-25T09:00:00",
+        "end": "2023-07-25T17:00:00",
+        "allDay": false,
+        "groupId": "project2",
+        "url": "/tasks/task2",
+        "interactive": true,
+        "extendedProps": {
+          "employeeId": "employeeId2",
+          "projectId": "project2",
+          "description": "Update and refactor existing UI components for better performance.",
+          "status": "Not Started",
+          "priority": "Medium",
+          "progress": 0
+        }
+      }
+     ]
+}
+]

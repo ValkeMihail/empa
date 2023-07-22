@@ -1,7 +1,8 @@
 import { useEffect , useState} from 'react';
 import { ProjectData } from '../../../../types';
 import { GroupAvatars } from '../../../components/groupAvatars/GroupAvatars';
-
+import { EmployeeData } from '../../../../types';
+import employees from '../../../../employees.json';
 
 
 const containerStyle: React.CSSProperties = {
@@ -38,7 +39,7 @@ const zeroMargin: React.CSSProperties = {
 export const EmployeeRecentProjectCard = ({project} : {project: ProjectData}) => {
 
   const [recentProject, setRecentProject] = useState<ProjectData>(project);
-
+  const [employee, setEmployee] = useState<EmployeeData[]>(employees as EmployeeData[]);
   useEffect (() => {
     setRecentProject (project);
   }, []);
@@ -49,17 +50,17 @@ export const EmployeeRecentProjectCard = ({project} : {project: ProjectData}) =>
     <div className="flexColumn recentProject" style={containerStyle}>
       <div className="flexColumn" style={headerInContainerStyle}>
         <div className="flexRow" style={headerTopContainerStyle} >
-          <img style={projectImageStyle} src={recentProject.photo} alt="project photo" />
+          <img style={projectImageStyle} src={recentProject.projectPhoto} alt="project photo" />
           <h3 style={zeroMargin}>
-            {recentProject.name}
+            {recentProject.projectName}
           </h3>
         </div>
           <p style={zeroMargin}>
-            {recentProject.employees.length} members
+            {recentProject.assigned.length} members
           </p>
       </div>  
       <GroupAvatars
-        employeeList={recentProject.employees}
+        employeeList={employees}
         style={{
           alignSelf: 'flex-end'
         }}

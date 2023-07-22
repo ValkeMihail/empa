@@ -1,14 +1,14 @@
 import { Check, ShowChart } from "@mui/icons-material";
 import { Calendar } from "./../../../components/calendar/Calendar";
-import { ProjectData, WorkTask } from "../../../../types";
+import { ProjectData, TaskData } from "../../../../types";
 import { LinearProgress } from "@mui/material";
 import { styled } from "@mui/system";
-import styles from  "./employeeright.module.scss";
+import styles from "./employeeright.module.scss";
 import { EmployeeRecentProjectCard } from "../employeeRecentProject/RecentProjectCard";
 
 type EmployeeProjectProps = {
   recentProject: ProjectData;
-  tasks: WorkTask[];
+  tasks: TaskData[];
 };
 
 const StyledLinearProgress = styled(LinearProgress)(() => ({
@@ -17,56 +17,49 @@ const StyledLinearProgress = styled(LinearProgress)(() => ({
   },
 }));
 
-export const EmployeeRigthSection = ({ recentProject , tasks }:EmployeeProjectProps) => {
+export const EmployeeRightSection = ({ recentProject, tasks }: EmployeeProjectProps) => {
 
   return (
-    <section className="flexColumn rightSideSection">
-      <div className="flexRow topCards">  
-          <div className="flexColumn card">
-              <div className='flexRow projectsInProgressHeader'>
-                  <div className='flexColumn iconWrap'>
-                      <ShowChart/>
-                  </div>
-                  <h3>Projects in Progress</h3>
-              </div>
-              <div className='projectsInProgress'>
-                  <div className='projectsCount'>
-                      3
-                  </div>
-                  
-              </div>
+    <section className={`${styles.rightSideSection} flexColumn`}>
+      <div className={`${styles.topCards} flexRow`}>
+        <div className={`${styles.card} flexColumn`}>
+          <div className={`${styles.projectsInProgressHeader} flexRow`}>
+            <div className={`${styles.iconWrap} flexColumn`}>
+              <ShowChart />
+            </div>
+            <h3>Projects in Progress</h3>
           </div>
-            <div className="flexColumn card">
-              <div className='flexRow projectsInProgressHeader'>
-                <div className='flexColumn iconWrap'>
-                    <Check/>
-                </div>
-                  <h3>Completion Rate</h3>
-              </div>
-              <div className='projectsInProgress'>
-                <div className='projectsCount'>
-                  97%
-                </div>
-                <StyledLinearProgress 
-                  className='progressBar'
-                  variant="determinate"
-                  value={97}
-                  
-                />
-              </div>
+          <div className={`${styles.projectsInProgress} flexColumn`}>
+            <div className={`${styles.projectsCount} flexRow`}>
+              3
             </div>
-            <div className="flexColumn card">
-              
-              { 
-                Object.keys(recentProject).length !== 0 ? <EmployeeRecentProjectCard project={recentProject} /> : <></>
-              }
-    
+          </div>
+        </div>
+        <div className={`${styles.card} flexColumn`}>
+          <div className={`${styles.projectsInProgressHeader} flexRow`}>
+            <div className={`${styles.iconWrap} flexColumn`}>
+              <Check />
             </div>
+            <h3>Completion Rate</h3>
+          </div>
+          <div className={`${styles.projectsInProgress} flexColumn`}>
+            <div className={`${styles.projectsCount} flexRow`}>
+              97%
+            </div>
+            <StyledLinearProgress
+              className={`${styles.progressBar} flexRow`}
+              variant="determinate"
+              value={97}
+            />
+          </div>
         </div>
-        <div className="flexColumn bottomCard">
-          <Calendar worktasks={tasks} />
+        <div className={`${styles.card} flexColumn`}>
+          {Object.keys(recentProject).length !== 0 ? <EmployeeRecentProjectCard project={recentProject} /> : <></>}
         </div>
+      </div>
+      <div className={`${styles.bottomCard} flexColumn`}>
+        <Calendar worktasks={tasks} />
+      </div>
     </section>
-
   );
 }

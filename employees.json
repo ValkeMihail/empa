@@ -1,0 +1,55 @@
+[
+  {
+    "_id": "employeeId1",
+    "employeeName": "John Krakowinsky",
+    "employeeEmail": "john.krakowinsky@gmail.com",
+    "employeeRole": "Java Developer",
+    "employeeStartDate": "Timestamp",
+    "employeePhoto": "https://www.w3schools.com/howto/img_avatar.png",
+    "employeeDepartmentId": "departmentId1",
+    "employeePerformance": [
+      { "month": "Jan", "performance": 65 },
+      { "month": "Feb", "performance": 59 },
+      { "month": "Mar", "performance": 80 },
+      { "month": "Apr", "performance": 81 },
+      { "month": "May", "performance": 56 },
+      { "month": "Jun", "performance": 55 },
+      { "month": "Jul", "performance": 40 }
+    ],
+    "employeeAttributes": [
+      { "attribute": "Curiosity", "value": 8 },
+      { "attribute": "Perseverance", "value": 9 },
+      { "attribute": "Patience", "value": 7 },
+      { "attribute": "Eye for Detail", "value": 6 },
+      { "attribute": "Resourcefulness", "value": 9 },
+      { "attribute": "Enthusiasm", "value": 8 }
+    ]
+  },
+
+  {
+    "_id": "employeeId2",
+    "employeeName": "Johna Owinsky",
+    "employeeEmail": "john.ads@gmail.com",
+    "employeeRole": "UX Designer",
+    "employeeStartDate": "Timestamp",
+    "employeePhoto": "https://www.w3schools.com/howto/img_avatar2.png",
+    "employeeDepartmentId": "departmentId2",
+    "employeePerformance": [
+      { "month": "Jan", "performance": 65 },
+      { "month": "Feb", "performance": 59 },
+      { "month": "Mar", "performance": 80 },
+      { "month": "Apr", "performance": 81 },
+      { "month": "May", "performance": 56 },
+      { "month": "Jun", "performance": 55 },
+      { "month": "Jul", "performance": 40 }
+    ],
+    "employeeAttributes": [
+      { "attribute": "Curiosity", "value": 8 },
+      { "attribute": "Perseverance", "value": 9 },
+      { "attribute": "Patience", "value": 7 },
+      { "attribute": "Eye for Detail", "value": 6 },
+      { "attribute": "Resourcefulness", "value": 9 },
+      { "attribute": "Enthusiasm", "value": 8 }
+    ]
+  }
+]

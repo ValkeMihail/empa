@@ -117,7 +117,7 @@ export default function Home() {
         <link rel="icon"  type="image"  href="/logo.png" />
         <meta lang='en'/>
       </Head>
-      <div className={`${styles.appContainer} flexColumn`}>
+      <div className={`appContainer flexColumn`}>
         <ArtificialScroll scrollToNextRef={ scrollToNextRef } />
         <HomeHeader headerRef={headerRef} projectsRef={projectsRef} pricesRef={pricesRef} />
         <main className={`${styles.mainHome} flexColumn`}>

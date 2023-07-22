@@ -1,0 +1,157 @@
+.taskContainer{
+  width: 100vw;
+  height: 100vh;
+  align-items: center;
+  justify-content: center;
+  gap : 1vw;
+
+  .taskStats{
+    height: 80%;
+    width: 40%;
+    align-items: flex-start;
+    justify-content: flex-start;
+
+    h3, p {
+      margin-left: 1vw;
+      text-align: left;
+    }
+
+    .nextMeet{
+      margin-left: 1vw;
+      align-items: center;
+
+
+      .nextMeetCard{
+        align-items: center;
+        justify-content: center;
+        gap: 1vw;
+      }
+    }
+  }
+  .taskInfo{
+    width: 50%;
+    height: 80%;
+
+    .commentsSection{
+      width: 100%;
+      height: 50%;
+      align-items: flex-start;
+      justify-content: flex-start;
+
+      h3{
+        margin-left: 1vw;
+      }
+      .commentCard{
+        width: 100%;
+        border: 1px solid black;
+        border-radius: 1vh;
+        align-items: flex-start;
+        justify-content: flex-start;
+
+        .commentHeader{
+          align-items: center;
+          width: 100%;
+          justify-content: space-between;
+
+          .commenterWrap{
+            align-items: center;
+            justify-content: flex-start;
+            gap: 1vw;
+          }
+
+          .moreButton{
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            outline: none;
+          }
+
+
+          
+        }
+        .commentBody{
+          align-items: flex-start;
+          justify-content: flex-start;
+          p{
+            margin-left: 1vw;
+            text-align: left;
+          }
+        }
+      }
+
+      img{
+        width: 3vw;
+        height: 3vw;
+        border-radius: 50%;
+        margin-left: 1vw;
+      }
+    }
+
+    .taskBody{
+      width: 100%;
+      height: 50%;
+      align-items: flex-start;
+      justify-content: space-between;
+      
+
+      .taskInfoWrap{
+        width: 100%;
+        height: 20%;
+        align-items: center;
+        justify-content: flex-start;
+
+
+        .taskIconWrap{
+          margin-right: 5vw;
+          margin-left: 1vw;
+          width: 10vw;
+          align-items: center;
+          justify-content: flex-start;
+          gap : 0.25vw;
+        }
+        .labelsWrap{
+          gap: 0.5vw;
+
+          .label{
+            border : 1px solid black;
+            border-radius: 1vw;
+            padding: 0.25vw 1vw;
+
+            h4{
+              margin: 0;
+            }
+
+          }
+        }
+      }
+    }
+
+    .taskInfoHeader{
+      align-items: center;
+      justify-content: space-between;
+      
+
+
+      .navTitle{
+        margin-left: 1vw;
+        h3{
+          margin-right: 0.6vw;
+          font-weight: 300;
+        }
+        .emphasisHeader{
+          font-weight: 600;
+        }
+      }
+
+      .moreButton {
+        margin-right: 1vw;
+        background: transparent;
+        border: none;
+        cursor: pointer;
+        outline: none;
+
+      }    
+    }
+  }
+
+}

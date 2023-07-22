@@ -1,0 +1,13 @@
+{
+  "_id": "companyId1",
+  "companyName": "ABC Company",
+  "companyEmail": "example@gmail.com",
+  "companyPhone": "123456789",
+  "companyAddress": "123 Main Street, New York, NY 10030",
+  "companyWebsite": "https://www.google.com/",
+  "companyPassword": "123456789",
+  "companyLogo": "https://picsum.photos/id/152/200/200",
+  "projects": [ "projectId1", "projectId2" ],
+  "departments": [ "departmentId1", "departmentId2" ],
+  "employees": [ "employeeId1", "employeeId2", "employeeId3" ]
+}

@@ -1,5 +1,5 @@
-import { EmployeeData, ProjectData, WorkTask } from "../../../../types";
-import { EmployeeRigthSection } from "../employeeRightSection/EmployeeRigthSection";
+import { EmployeeData, ProjectData, TaskData } from "../../../../types";
+import { EmployeeRightSection } from "../employeeRightSection/EmployeeRigthSection";
 import { EmployeeLeftSection } from "../employeeLeftSection/EmployeeLeftSection";
 import styles from './employeeheader.module.scss';
 
@@ -8,7 +8,7 @@ import styles from './employeeheader.module.scss';
 
 type EmployeeHeaderProps = {
   employeeData: EmployeeData;
-  tasks: WorkTask[];
+  tasks: TaskData[];
   recentProjectData: ProjectData;
 };
 
@@ -17,13 +17,13 @@ export const EmployeeHeader = ({employeeData ,recentProjectData, tasks } : Emplo
 
 
   return(
-    <section className='flexColumn employeeHeaderSection'>
+    <section className={`${styles.employeeHeader} flexColumn`}>
     {   (
-        <div className="flexRow employeeHeader">
+        <div className= {`${styles.employeeHeader} flexRow`}>
           <EmployeeLeftSection 
             employeeData={employeeData}
             />            
-          <EmployeeRigthSection
+          <EmployeeRightSection
             recentProject={recentProjectData}
             tasks={tasks}
             />
