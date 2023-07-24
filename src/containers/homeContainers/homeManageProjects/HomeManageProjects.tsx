@@ -9,7 +9,7 @@ type HomeManageProjectsProps = {
 export const HomeManageProjects = ({ projectsRef }: HomeManageProjectsProps) => {
   return (
     <section ref={projectsRef} className={`${styles.manageCointainer} ${styles.manageProjects} flexRow`}>
-      <div className={`sectionContent flexColumn ${styles.sectionContent}`}>
+      <div className={`flexColumn ${styles.sectionContent}`}>
         <h2>Manage your projects</h2>
         <p>
           <br /> <br /> <br />
@@ -32,8 +32,8 @@ export const HomeManageProjects = ({ projectsRef }: HomeManageProjectsProps) => 
           <br />
         </p>
       </div>
-      <div className={`projectsHero ${styles.mainHero}`}>
-        <Image src={heroProject} alt='hero project management section' />
+      <div className={`${styles.projectsHero} ${styles.mainHero}`}>
+        <Image className={styles.heroImg} src={heroProject} alt='hero project management section' />
       </div>
     </section>
   );
