@@ -1,38 +1,41 @@
-export interface DepartmentData {
-  _id: string;
+import { ObjectId } from "mongodb";
+
+export type DepartmentData = {
+  _id: ObjectId;
   departmentName: string;
-  departmentDescription: string;
-  departmentPhoto: string;
-  departmentEmployees: string[];
+  departmentDescription: string | null;
+  departmentPhoto: string | null;
+  departmentEmployees: ObjectId[]; 
 }
 
 
 export type EmployeeData = {
-  _id: string;
+  _id: ObjectId;
+  employeeCompanyId: ObjectId;
   employeeName: string;
   employeeEmail: string;
+  employeePassword: string;
   employeeRole: string;
   employeeStartDate: string;
-  employeePhoto: string;
-  employeeDepartmentId: string;
-  employeePerformance: { month: string; performance: number }[];
-  employeeAttributes: { attribute: string; value: number }[];
+  employeePhoto: string  | null;
+  employeeDepartmentId: ObjectId | null;
+  employeePerformance: { month: string; performance: number }[] | null;
+  employeeAttributes: { attribute: string; value: number }[] | null;
 };
 
 
 
-export interface CompanyData {
-  _id: string;
+export type CompanyData =  {
+  _id: ObjectId;
   companyName: string;
   companyEmail: string;
-  companyPhone: string;
-  companyAddress: string;
-  companyWebsite: string;
-  companyPassword: string;
-  companyLogo: string;
-  projects: string[];
-  departments: string[];
-  employees: string[];
+  companyPhone: string | null;
+  companyAddress: string | null;
+  companyWebsite: string | null;
+  companyLogo: string | null;
+  projects: string[] | null;
+  departments: ObjectId[] | null;
+  employees: ObjectId[] | null;
 }
 export type TaskData = {
   id: string;
@@ -65,3 +68,18 @@ export type ProjectData = {
   tasks: TaskData[];
   assigned: string[];
 };
+
+
+export type FullCompanyData = {
+  _id: ObjectId;
+  companyName: string;
+  companyEmail: string;
+  companyPhone: string | null;
+  companyAddress: string | null;
+  companyWebsite: string | null;
+  companyLogo: string | null;
+  
+  projects: ProjectData[];
+  departments: DepartmentData[];
+  employees: EmployeeData[];
+}

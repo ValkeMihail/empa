@@ -14,18 +14,17 @@
       height: 100%;
       position: absolute;
       top: 0;
-   }
+  }
 
-   
   .formCointainer{
     z-index: 99;
     border-radius: 4vw;
-    height: 80vh;
+    height: 95%;
     width: 50%;
     align-items: center;
     justify-content: center;
     position: relative;
-    background-color: #ffffff99;
+    background-color: #ffffff99;   
     
     .eyeButton {
       border: none;
@@ -33,7 +32,7 @@
       outline: none;
     }
     
-    .formInput{
+    .passwordInput{
       width: 100%;
       position: relative;
       height: fit-content;
@@ -53,33 +52,13 @@
         }
       }
     }
-    .links{
-        height: 4vh;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-around;
-        align-items: center;     
-        
-        a {
-          text-decoration: none;
-          font-size: 1vw;
-          font-family: "Roboto Flex", sans-serif;
-          font-weight: 300;
-          transition: color 0.3s ease;
-          &:hover {
-            cursor: pointer;
-            color: #7eef9f;
-          }
-        }
-        
-      
-      }
-
+    
     .formEl{
       width: 100%;
       justify-content: flex-start;
       align-items: center;   
       height: 55vh;
+      margin-bottom: 5vh;
       
       .inputEl {
         width: 40%;
@@ -101,7 +80,7 @@
       .submitButton{
         width: 30%;
         height: 5vh;
-        margin: 5vh 0 0 0;
+        margin: 5vh 0 10vh 0;
         border: none;
         border-radius: 0.5vw;
         padding: 0 1vw;
@@ -130,5 +109,5 @@
       background-color: rgba(255, 255, 255, 0.95);
       transition: background-color 0.3s ease;
     }
-   }
+  }
 }

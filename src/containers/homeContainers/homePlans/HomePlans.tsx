@@ -1,3 +1,4 @@
+import { useRouter } from 'next/router';
 import styles from './../homeContainers.module.scss';
 
 type HomePlansProps = {
@@ -5,6 +6,9 @@ type HomePlansProps = {
 };
 
 export const HomePlans = ({ pricesRef }: HomePlansProps) => {
+
+  const router = useRouter();
+
   return (
     <section id="plans" ref={pricesRef} className={`${styles.pricingSection} flexRow`}>
       <div className={`${styles.pricingColumn} flexColumn`}>
@@ -18,7 +22,9 @@ export const HomePlans = ({ pricesRef }: HomePlansProps) => {
           - Suitable for small businesses or individuals on a tight budget <br />
           <br />
         </p>
-        <button className={`${styles.pricingButton} ${styles.freeButton} button`}>Get Started</button>
+        <button 
+          onClick={() => router.push('/register')}
+          className={`${styles.pricingButton} ${styles.freeButton} button`}>Get Started</button>
       </div>
       <div className={`${styles.pricingColumn} flexColumn`}>
         <h2 className={styles.premiumPricing}>Premium - $9.99 / month</h2>
@@ -33,7 +39,9 @@ export const HomePlans = ({ pricesRef }: HomePlansProps) => {
           - Ideal for growing businesses or teams with more requirements <br />
           <br />
         </p>
-        <button className={`${styles.pricingButton} ${styles.premiumButton} button`}>Get Started</button>
+        <button 
+          onClick={() => router.push('/register')}
+          className={`${styles.pricingButton} ${styles.premiumButton} button`}>Get Started</button>
       </div>
       <div className={`${styles.pricingColumn} flexColumn`}>
         <h2 className={styles.enterprisePricing}>Enterprise - $19.99 / month</h2>
@@ -48,7 +56,9 @@ export const HomePlans = ({ pricesRef }: HomePlansProps) => {
           - Recommended for large organizations or businesses with complex requirements <br />
           <br />
         </p>
-        <button className={`${styles.pricingButton} ${styles.enterpriseButton} button`}>Get Started</button>
+        <button 
+          onClick={() => router.push('/register')}
+          className={`${styles.pricingButton} ${styles.enterpriseButton} button`}>Get Started</button>
       </div>
     </section>
   );

@@ -4,9 +4,13 @@ import heroImg from '@/assets/hero.png';
 import { RemoveRedEye , PasswordSharp} from '@mui/icons-material';
 import Image from 'next/image';
 import styles from '@/styles/register.module.scss';
+import { createCompany } from '@/utils/client-api';
+import { useRouter } from 'next/router';
 
 
 type companyCredentials = {
+  companyName: string,
+  userName: string,
   email: string,
   password: string,
   confirmPassword: string
@@ -16,41 +20,79 @@ type Errors = {
   emailEmptyError : string  | null,
   emailAtError : string | null,
   emailDotError : string | null,
+  
   passwordEmptyError : string | null,
   passwordLengthError : string | null,
-  confirmPasswordError : string | null
+  confirmPasswordError : string | null,
+
+  nameEmptyError : string | null,
+  companyNameEmptyError : string | null,
+
+
+  otherError : string | null
 };
 
 
+const RegisterCompany = () => {
 
+  const router = useRouter();
 
-
-
- const RegisterCompany = () => {
-
-  
   const [errors, setErrors] = useState<Errors | null >({
     emailEmptyError : "Email is required",
     emailAtError : "Email must contain @",
     emailDotError : "Email must contain .",
     passwordEmptyError : "Password is required",
     passwordLengthError : "Password must be at least 8 characters",
-    confirmPasswordError : "Passwords must match"
+    confirmPasswordError : "Passwords must match",
+    nameEmptyError : "Name is required",
+    companyNameEmptyError : "Company Name is required",
+    otherError : null
   });
 
   const [credentials, setCredentials] = useState<companyCredentials | null>(null);
   const [showPassword, setShowPassword] = useState(false);
   const [showErrors, setShowErrors] = useState(false);
 
+  const registerCompany = async () => {
+    const createdCompanyStatus = await createCompany( 
+      credentials!.userName,
+      credentials!.companyName,
+      credentials!.email,
+      credentials!.password
+    );
+    if (createdCompanyStatus === "error") {
+      setErrors({
+        ...errors!,
+        otherError: 'Something went wrong, please try again'
+      })
+      setShowErrors(true);
+    } else {
+
+      setErrors({
+        ...errors!,
+        otherError: null
+      });
+
+      setShowErrors(false);
+      router.push(`/company/${credentials?.companyName}/login`);
+    }
+  }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    if (Object.keys(errors!).length > 0 || errors !== null) {
+    
+    e.preventDefault();
+    setErrors({
+      ...errors!,
+      otherError: null
+    })
+
+    if(Object.values(errors!).some((error) => error !== null)){
       setShowErrors(true);
     }else {
       setShowErrors(false);
-      console.log(credentials);
+      
+      registerCompany();
     }
-    e.preventDefault();
   }
 
   const setErrorOnInput = (input: HTMLInputElement) => {
@@ -61,6 +103,7 @@ type Errors = {
   const handleShowPassword = () => {
     setShowPassword(!showPassword); 
   }
+
   const resetInputError = (input: HTMLInputElement) => {
     input.style.borderBottom = '2px solid lightgreen';
   }
@@ -101,7 +144,6 @@ type Errors = {
       validateData(e);
     }  
   }
-
 
   const handlePasswordChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     
@@ -152,6 +194,51 @@ type Errors = {
       }  
   }
 
+  const handleUserNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    const isEmpty = e.target.value.trim() === '';
+
+    if ( isEmpty ) {
+          
+        setErrorOnInput (e.target);
+        setErrors ({ ...errors!, nameEmptyError: 'Name is required' });
+    
+    } else {
+
+      setErrors(
+        {
+          ...errors!,
+          nameEmptyError: null
+        }
+      )
+      validateData(e);
+    }
+  }
+
+  const handleCompanyNameChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+
+    const isEmpty = e.target.value.trim() === '';
+
+    if ( isEmpty ) {
+      setErrors (
+        {
+          ...errors!,
+          companyNameEmptyError: 'Company Name is required'
+        }
+      )
+
+  } else {
+      
+      setErrors(
+        {
+          ...errors!,
+          companyNameEmptyError: null
+        }
+      )
+      validateData(e);
+    } 
+  
+  }
 
 
   const validateData = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -167,8 +254,15 @@ type Errors = {
     <section className={styles.companyAuth}> 
       <Image src={heroImg} alt="background image" />
       <div className={`${styles.formCointainer} flexColumn`}>
-        <h1>Company Register</h1>
+        <h1>Register your company</h1>
         <form onSubmit={handleSubmit} className={`${styles.formEl} flexColumn`}>
+          <input 
+            className={styles.inputEl}
+            name='userName'
+            onChange={handleUserNameChange}
+            type="text" 
+            placeholder='Your Name' 
+          />
           <input 
             className={styles.inputEl}
             name='email'
@@ -176,63 +270,47 @@ type Errors = {
             type="email" 
             placeholder='Company Email' 
           />
-          <div className={`${styles.formInput} flexRow`}>
-            {
-              showPassword ? 
-              (
-                <input
-                  className={styles.inputEl} 
-                  name = 'password'
-                  onChange={handlePasswordChange}
-                  type="text"   
-                  placeholder='Password' 
-                />
-              ):(
-                <input 
-                  className={styles.inputEl}
-                  name = 'password'
-                  onChange={handlePasswordChange}
-                  type="password" 
-                  placeholder='Password' 
-                />
-              )
-                
-            }
+          <input 
+            className={styles.inputEl}
+            name='companyName'
+            onChange={handleCompanyNameChange}
+            type="text" 
+            placeholder='Company Name' 
+          />
+          <div className={`${styles.passwordInput} flexRow`}>
+            
+            <input
+              className={styles.inputEl} 
+              name = 'password'
+              onChange={handlePasswordChange}
+              type= { showPassword ? "text" : "password"} 
+              placeholder='Password' 
+            />
+              
             <button 
               className={styles.eyeButton}
               tabIndex={-1}
               onClick={handleShowPassword}
+              type='button'
             >
               {
                 showPassword ? <PasswordSharp className={styles.eye}/> : <RemoveRedEye className={styles.eye}/>
               }
             </button>
           </div>
-          <div className={styles.formInput}>
-            {
-              showPassword ? 
-              (
-                <input 
-                  className={styles.inputEl}
-                  name='confirmPassword'
-                  onChange={handleConfirmPasswordChange}
-                  type="text" 
-                  placeholder='Confirm Password' 
-                />
-              ) : (
-                <input 
-                  className={styles.inputEl}
-                  name='confirmPassword'
-                  onChange={ handleConfirmPasswordChange}
-                  type="password"   
-                  placeholder='Confirm Password' 
-                />
-              )
-            }
+          <div className={styles.passwordInput}>
+            <input 
+              className={styles.inputEl}
+              name='confirmPassword'
+              onChange={handleConfirmPasswordChange}
+              type= { showPassword ? "text" : "password"}
+              placeholder='Confirm Password' 
+            />
             <button
               className={styles.eyeButton} 
               tabIndex={-1}
               onClick={handleShowPassword}
+              type='button'
             >
               {
                 showPassword ? 
@@ -275,10 +353,8 @@ type Errors = {
               null
             )
           }
-        <div className={styles.links}>
-          <a href="/companies/login">Already have a company account?</a>
-        </div>
-      </div>    
+      </div>
+      
     </section>
   ); 
 

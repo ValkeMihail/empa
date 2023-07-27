@@ -1,55 +1,41 @@
 
 
 import styles from  "@/styles/company/company.module.scss";
-import { useRouter } from "next/router";
-import company from "../../../../company.json";
-import companyDepartments from "../../../../departments.json";
-import {  useState } from "react";
-import { CompanyData, DepartmentData } from "../../../../types"   
 import { CompanyHeader } from "@/containers/companyContainers/companyHeader/CompanyHeader";
 import { CompanyDepartments } from "@/containers/companyContainers/companyDepartments/CompanyDepartments";
 import { CompanyProjects } from "@/containers/companyContainers/companyProjects/CompanyProjects";
+import { useSelector } from 'react-redux';
+import { RootState } from "@/store";
 
 
 
-
- const Company = () => {
-   
-   const router = useRouter();
-   const { companyName } = router.query;
-
-    const [companyData, setCompanyData] = useState(company as CompanyData);
-    const [departments, setDepartments] = useState(companyDepartments as DepartmentData[]);
-
-  
-
-
+  const Company = () => {
+    
+  const companyData = useSelector((state : RootState) => state.company.data);
+  console.log(companyData);
+    
   return (
-    
-    
     <>
-      {
-        companyData &&
-          (
-            <>
-              <CompanyHeader 
-                nrOfDepartments={companyData.departments.length}
-                nrOfProjects={companyData.projects.length}
-                nrOfEmployees={companyData.employees.length}
-              />
-              <main className={`${styles.mainContainer} flexColumn`}>
-                <CompanyDepartments
-                  departments={departments}
-                />
-                <CompanyProjects/>
-              </main>
-            </>
-          )
-      }
+      <CompanyHeader 
+        nrOfDepartments={companyData!?.departments!?.length}
+        nrOfProjects={companyData!?.projects!?.length}
+        nrOfEmployees={companyData!?.employees!?.length}
+      />
+      <main className={`${styles.mainContainer} flexColumn`}>
+        <div>
+          {companyData?.companyEmail}
+        </div>
+        
+        
+        {/* <CompanyDepartments
+          departments={companyData.departments}
+        /> */}
+        <CompanyProjects/>
+        
+      </main>
     </>
-  )
+  );
 }
-
 
 
 export default Company;

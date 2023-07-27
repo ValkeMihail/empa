@@ -3,8 +3,10 @@ import Image from "next/image";
 import companyHeroImg from "@/assets/hero-employee.png";
 import { PasswordSharp, RemoveRedEye } from "@mui/icons-material";
 import styles from "@/styles/company/employeeLogin.module.scss";
-import { useRouter } from "next/router";
 import { loginEmployee } from "@/utils/client-api";
+import { useRouter } from 'next/router';
+import { useDispatch } from 'react-redux';
+import { fetchDataSuccess } from '@/store/companySlice';
 
 
 type EmployeeLoginProps = {
@@ -12,33 +14,37 @@ type EmployeeLoginProps = {
 };
 
 const EmployeeLogin = ({handleErrorUpdate} : EmployeeLoginProps) => {
+  
+  const dispatch = useDispatch();
+  const router = useRouter();
 
+  const { companyName } = router.query;
+  const companyNameString = companyName as string;
+  
+  
   const [showPassword, setShowPassword] = useState(false);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-
+  
   
   const setError = (errorMessage: string) => {
     handleErrorUpdate(errorMessage);
   };
 
-  const router = useRouter();
-  const { companyName } = router.query;
-  const companyNameString = companyName as string;
-
   const handleShowPassword = () => {
     setShowPassword(!showPassword);
   };
 
+
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const loginResponse = await loginEmployee(email, password);
-    if (loginResponse == "error") {
-      setError("Something went wrong");      
-    }else{
-      router.push('/company'+ "/" + companyName); 
+    if (loginResponse === 'error') {
+      setError('Something went wrong');
+    } else {
+      dispatch(fetchDataSuccess(loginResponse));
+      router.push(`/company/${companyNameString}`);
     }
-    
   };
 
   return (
