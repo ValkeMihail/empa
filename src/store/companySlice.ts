@@ -1,6 +1,6 @@
 
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { CompanyData } from '../../types';
+import { CompanyData } from '@types';
 
 interface CompanyState {
   data: CompanyData | null;

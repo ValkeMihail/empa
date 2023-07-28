@@ -5,8 +5,6 @@ import { PasswordSharp, RemoveRedEye } from "@mui/icons-material";
 import styles from "@/styles/company/employeeLogin.module.scss";
 import { loginEmployee } from "@/utils/client-api";
 import { useRouter } from 'next/router';
-import { useDispatch } from 'react-redux';
-import { fetchDataSuccess } from '@/store/companySlice';
 
 
 type EmployeeLoginProps = {
@@ -15,7 +13,6 @@ type EmployeeLoginProps = {
 
 const EmployeeLogin = ({handleErrorUpdate} : EmployeeLoginProps) => {
   
-  const dispatch = useDispatch();
   const router = useRouter();
 
   const { companyName } = router.query;
@@ -42,7 +39,6 @@ const EmployeeLogin = ({handleErrorUpdate} : EmployeeLoginProps) => {
     if (loginResponse === 'error') {
       setError('Something went wrong');
     } else {
-      dispatch(fetchDataSuccess(loginResponse));
       router.push(`/company/${companyNameString}`);
     }
   };

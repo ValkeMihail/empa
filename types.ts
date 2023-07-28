@@ -12,6 +12,7 @@ export type DepartmentData = {
 export type EmployeeData = {
   _id: ObjectId;
   employeeCompanyId: ObjectId;
+  employeeAccesLevel: string;
   employeeName: string;
   employeeEmail: string;
   employeePassword: string;
@@ -83,3 +84,15 @@ export type FullCompanyData = {
   departments: DepartmentData[];
   employees: EmployeeData[];
 }
+
+
+export type TokenData = {
+  id: ObjectId,
+  email:string;
+  userName: string;
+  accesLevel: AccesLevel;
+  companyId: ObjectId;
+}
+
+
+export type AccesLevel = string | "admin" | "manager" | "employee";

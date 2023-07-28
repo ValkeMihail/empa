@@ -2,6 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectClient } from '@/utils/mongo';
+import { EmployeeData, TokenData } from '@types';
 
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
@@ -15,7 +16,7 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
   try {
     
     const db = await connectClient();
-    const employeesCol = db.collection('employees');
+    const employeesCol = db.collection<EmployeeData>('employees');
     const employee = await employeesCol.findOne({ employeeEmail: email });
 
     if (!employee) {
@@ -27,21 +28,18 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     if (!passwordMatch) {
       return res.status(401).json({ message: 'Password incorrect' });
     }
-
-    const token = jwt.sign({ employeeId: employee._id, employeeEmail: employee.email }, 'your-secret-key', {
-      expiresIn: '1h',
+    const tokenData : TokenData = {
+      id: employee._id,
+      email: employee.employeeName,
+      userName: employee.employeeName,
+      accesLevel : employee.employeeAccesLevel,
+      companyId: employee.employeeCompanyId,
+    }
+    const token = jwt.sign(tokenData, 'your-secret-key', {
+      expiresIn: '2h',
     });
 
-
-    const companyObjectId = employee.employeeCompanyId;
-    const companiesCol = db.collection('companies');
-    const companyData = await companiesCol.findOne({ _id: companyObjectId });
-    
-    if (!companyData) {
-      return res.status(404).json({ message: 'Company not found' });
-    }
-
-    return res.status(200).json({ token , companyData });
+    return res.status(200).json({ token });
     
   } catch (error) {
     

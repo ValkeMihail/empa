@@ -28,7 +28,6 @@ type Errors = {
   nameEmptyError : string | null,
   companyNameEmptyError : string | null,
 
-
   otherError : string | null
 };
 
@@ -74,7 +73,7 @@ const RegisterCompany = () => {
       });
 
       setShowErrors(false);
-      router.push(`/company/${credentials?.companyName}/login`);
+      router.push(`/company/${credentials!.companyName}`);
     }
   }
 

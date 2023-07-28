@@ -1,7 +1,7 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import {EmployeeData, CompanyData, DepartmentData} from '../../../types';
+import {EmployeeData, CompanyData, DepartmentData, TokenData} from '../../../types';
 import { connectClient } from '@/utils/mongo';
 import { ObjectId } from 'mongodb';
 
@@ -52,6 +52,7 @@ export default async function createCompany(req: NextApiRequest, res: NextApiRes
     _id: new ObjectId(),
     employeeName: userName,
     employeeEmail: email,
+    employeeAccesLevel: 'Admin',
     employeeRole: 'Admin',
     employeePassword: hashedPassword,
     employeeStartDate: new Date().toISOString(),
@@ -75,15 +76,18 @@ export default async function createCompany(req: NextApiRequest, res: NextApiRes
   await departmentCollection.insertOne(updatedDepartment);
 
 
+  const tokenData : TokenData = {
+    id: newEmployee._id,
+    email: newEmployee.employeeName,
+    userName: newEmployee.employeeName,
+    accesLevel : newEmployee.employeeRole,
+    companyId: newEmployee.employeeCompanyId
+  }
 
+  console.log(tokenData, " this is from register.ts")
 
-  const token = jwt.sign({ 
-    companyName,
-    email,
-    password: hashedPassword,
-    userName,
-  }, 'your-secret-key', {
-    expiresIn: '1h',
+  const token = jwt.sign(tokenData, 'your-secret-key', {
+    expiresIn: '2h',
   });
 
   return res.status(201).json({ token });

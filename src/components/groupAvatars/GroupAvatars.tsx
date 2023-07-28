@@ -1,6 +1,6 @@
 import Avatar from '@mui/material/Avatar';
 import AvatarGroup from '@mui/material/AvatarGroup';
-import { EmployeeData } from '../../../types';
+import { EmployeeData } from '@types';
 
 
 
@@ -16,7 +16,12 @@ export const  GroupAvatars = ({ employeeList, style }: GroupAvatarsProps) => {
   return (
     <AvatarGroup max={4} style={style}>
       { employeeList && employeeList.map((employee) => (
-        <Avatar key={employee.id} alt={employee.name} src={employee.photo} />
+
+        <Avatar 
+          key={employee._id.toString()} 
+          alt={employee.employeeName} 
+          src={employee.employeePhoto!} 
+        />
 
       ))}
     </AvatarGroup>

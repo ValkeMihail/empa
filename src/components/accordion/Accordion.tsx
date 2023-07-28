@@ -3,7 +3,7 @@ import Accordion from '@mui/material/Accordion';
 import AccordionSummary from '@mui/material/AccordionSummary';
 import AccordionDetails from '@mui/material/AccordionDetails';
 import ExpandMoreIcon from '@mui/icons-material/ExpandMore';
-import { ProjectData, TaskData } from '../../../types';
+import { ProjectData, TaskData } from '@types';
 import { CircularProgressWithLabel } from '../circularProgress/CircularProgressWithLabel';
 import styles from  './accordion.module.scss';
 import { VerticalLinearStepper } from '../verticalStepper/VerticalStepper';
