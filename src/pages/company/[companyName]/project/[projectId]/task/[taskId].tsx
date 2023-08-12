@@ -7,16 +7,61 @@ import {
   StackedBarChartSharp,
   LabelOutlined,
 } from "@mui/icons-material";
+import { ProjectData, TaskData } from "@types";
+import { GetServerSideProps } from "next";
+import Image from "next/image";
 
-export const Task = () => {
+export const getServerSideProps: GetServerSideProps = async (context) => {
+
+  const { projectId, taskId } = context.query;
+  
+  try {
+    const response = await fetch(`http://localhost:3000/api/project/${projectId}/task/${taskId}`);
+    if (response.ok) {
+      const data = await response.json()
+      return {
+        props: {
+          task: data.task,
+          project: data.project,
+        },
+      };
+    } else {
+      console.error('Error fetching company data:', response.status, response.statusText);
+      return {
+        props: {
+          task: null,
+          project: null,
+        },
+      };
+    }
+  }
+  catch (error) {
+    console.error('Error fetching company data:', error);
+    return {
+      props: {
+        task: null,
+        project: null,
+      },
+    };
+  }
+}
+
+type TaskProps = {
+  task: TaskData
+  project : ProjectData
+}
+
+
+export const Task = ({task,project} : TaskProps) => {
+
   return (
     <main className={`${styles.taskContainer} flexRow`}>
       <section className={`${styles.taskInfo} flexColumn`}>
         <div className={`${styles.taskInfoHeader} flexRow`}>
           <div className={`${styles.navTitle} flexRow`}>
-            <h3>{" ProjectName "}</h3>
+            <h3>{project.projectName}</h3>
             <h3>{" / "}</h3>
-            <h3 className={styles.emphasisHeader}>{" TaskName "}</h3>
+            <h3 className={styles.emphasisHeader}>{task.title}</h3>
           </div>
           <button className={styles.moreButton}>
             <MoreHoriz />
@@ -28,14 +73,14 @@ export const Task = () => {
               <StackedBarChartSharp />
               <h4>Status</h4>
             </div>
-            <h4>In progress</h4>
+            <h4>{task.extendedProps?.status}</h4>
           </div>
           <div className={`${styles.taskInfoWrap} flexRow`}>
             <div className={`${styles.taskIconWrap} flexRow`}>
               <CalendarMonth />
               <h4>Due Date</h4>
             </div>
-            <h4>Due 12/12/2021</h4>
+            <h4>Due {task.end}</h4>
           </div>
           <div className={`${styles.taskInfoWrap} flexRow`}>
             <div className={`${styles.taskIconWrap} flexRow`}>
@@ -66,7 +111,9 @@ export const Task = () => {
           <div className={`${styles.commentCard} flexColumn`}>
             <div className={`${styles.commentHeader} flexRow`}>
               <div className={`${styles.commenterWrap} flexRow`}>
-                <img
+                <Image
+                  width={50}
+                  height={50}
                   src="https://w3schools.com/howto/img_avatar.png"
                   alt="avatar"
                 />
@@ -91,20 +138,7 @@ export const Task = () => {
       <section className={`${styles.taskStats} flexColumn`}>
         <h3>Description</h3>
         <p>
-          {
-            `This task is to create a new page for the website. The page will be a
-            blog page that will display all of the blog posts that have been
-            created. The page will have a header, a footer, and a sidebar. The
-            sidebar will contain links to the blog posts. The header will contain
-            a logo, a search bar, and a navigation bar. The footer will contain
-            links to the blog posts, a link to the blog's RSS feed, and a link to
-            the blog's Twitter account. It will be a blog page that will display
-            all of the blog posts that have been created. The page will have a
-            header, a footer, and a sidebar. The sidebar will contain links to the
-            blog posts. The header will contain a logo, a search bar, and a
-            navigation bar. The footer will contain links to the blog posts, a
-            link to the blog's RSS feed, and a link to the blog's Twitter account.`
-          }
+          {task.extendedProps.description}
         </p>
         <div className={`${styles.nextMeet} flexColumn`}>
           <h3>Next Meeting</h3>

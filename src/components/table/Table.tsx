@@ -12,6 +12,8 @@ import Typography from '@mui/material/Typography';
 import Paper from '@mui/material/Paper';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import KeyboardArrowUpIcon from '@mui/icons-material/KeyboardArrowUp';
+import { EmployeeData, ProjectData } from '@types';
+import { useRouter } from 'next/router';
 
 function createData(
   projectName: string,
@@ -20,6 +22,7 @@ function createData(
   teamMembers: number,
   projectStatus: string,
   description:string,
+  projectId: string
 ) {
   return {
     projectName,
@@ -28,14 +31,15 @@ function createData(
     teamMembers,
     projectStatus,
     description,
+    projectId
   };
 }
 
 function Row(props: { row: ReturnType<typeof createData> }) {
   const { row } = props;
-
+  const router = useRouter();
   const [open, setOpen] = useState(false);
-
+  const companyName = router.query.companyName as string;
   return (
     <>
       <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
@@ -54,7 +58,13 @@ function Row(props: { row: ReturnType<typeof createData> }) {
         <TableCell align="right">{row.estimatedDate}</TableCell>
         <TableCell align="right">{row.projectType}</TableCell>
         <TableCell align="right">{row.teamMembers}</TableCell>
-        <TableCell align="right">{row.projectStatus}</TableCell>
+        <TableCell 
+          sx={{
+            textDecoration : "underline" , 
+            cursor : "pointer"
+          }}
+          onClick={() => router.push(`/company/${companyName}/project/${row.projectId}`)}
+        align="right">{row.projectStatus}</TableCell>
       </TableRow>
       <TableRow>
         <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
@@ -74,11 +84,12 @@ function Row(props: { row: ReturnType<typeof createData> }) {
   );
 }
 
-const rows = [
-  createData ('Employee Management', "Sep 12, 2020 - Dec 10, 2020", "Web App", 21, "In Pogress","asdasdagegw"),
-];
 
-export default function CollapsibleTable() {
+type CollapsibleTableProps = {
+  projects?: ProjectData[];
+}
+
+export default function ProjectsTable({ projects } : CollapsibleTableProps) {
   return (
     <TableContainer component={Paper}>
       <Table aria-label="collapsible table">
@@ -93,11 +104,116 @@ export default function CollapsibleTable() {
           </TableRow>
         </TableHead>
         <TableBody>
-          {rows.map((row) => (
-            <Row key={row.projectName} row={row} />
+          {projects?.map((project) => (
+            <Row key={project._id.toString()} row={createData(
+              project.projectName,
+              project.projectEndDate,
+              project.projectStartDate,
+              project.assigned.length,
+              project.projectStatus,
+              project.projectDescription,
+              project._id.toString()
+            )} />
           ))}
         </TableBody>
       </Table>
     </TableContainer>
   );
+}
+
+
+
+type EmployeeTableProps = {
+
+  employees: EmployeeData[]
+  
+}
+
+
+const createEmployeeData = (  
+  employeeName: string,
+  employeeRole: string,
+  employeeEmail : string,
+  employeeStartDate: string,
+) => {
+  return {
+    employeeName,
+    employeeRole,
+    employeeEmail,
+    employeeStartDate,
+  };
+}
+
+
+
+
+function EmployeeRow(props: { row: ReturnType<typeof createEmployeeData> }) {
+  const { row } = props;
+
+  const [open, setOpen] = useState(false);
+
+  return (
+    <>
+      <TableRow sx={{ '& > *': { borderBottom: 'unset' } }}>
+        <TableCell>
+          <IconButton
+            aria-label="expand row"
+            size="small"
+            onClick={() => setOpen(!open)}
+          >
+            {open ? <KeyboardArrowUpIcon /> : <KeyboardArrowDownIcon />}
+          </IconButton>
+        </TableCell>
+        <TableCell component="th" scope="row">
+          {row.employeeName}
+        </TableCell>
+        <TableCell align="right">{row.employeeRole}</TableCell>
+        <TableCell align="right">{row.employeeEmail}</TableCell>
+        <TableCell align="right">{row.employeeStartDate}</TableCell>
+      </TableRow>
+      <TableRow>
+        <TableCell style={{ paddingBottom: 0, paddingTop: 0 }} colSpan={6}>
+          <Collapse in={open} timeout="auto" unmountOnExit>
+            <Box sx={{ margin: 1 }}>
+              <Typography variant="h6" gutterBottom component="div">
+                Description
+              </Typography>
+              <p>
+                {row.employeeName}
+              </p>
+            </Box>
+          </Collapse>
+        </TableCell>
+      </TableRow>
+    </>
+  );
+
+}
+
+export const EmployeesTable = ({employees} : EmployeeTableProps) => {
+  return (
+    <TableContainer sx={{overflow : 'hidden'}} component={Paper}>
+      <Table aria-label="collapsible table">
+        <TableHead>
+          <TableRow>
+            <TableCell />
+            <TableCell>Name</TableCell>
+            <TableCell align="right">Role</TableCell>
+            <TableCell align="right">Email</TableCell>
+            <TableCell align="right">Phone</TableCell>
+          </TableRow>
+        </TableHead>
+        <TableBody>
+          {employees.map((employee) => (
+            <EmployeeRow key={employee._id.toString()} row={createEmployeeData(
+              employee.employeeName || "default",
+              employee.employeeRole || "default",
+              employee.employeeEmail || "default",
+              employee.employeeStartDate || "default",
+            )} />
+          ))}
+        </TableBody>
+      </Table>
+    </TableContainer>
+  )
 }

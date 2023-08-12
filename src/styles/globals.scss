@@ -1,14 +1,17 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Lora:ital@1&family=Roboto+Flex:wght@100&display=swap');
-
+@import url('https://fonts.googleapis.com/css2?family=Bitter:wght@100&family=Yanone+Kaffeesatz:wght@200&display=swap');
 :root {
     --primary-color:rgb(226, 232, 240);
     --primary-color-light:rgb(248, 251, 252);
     --secondary-color:rgb(204, 222, 243);
     --secondary-color-light:rgb(223, 230, 235);
     --accent-color:#1fd6ff;
-
     scroll-behavior: smooth !important;
+}
+
+*{
+  box-sizing: border-box;
 }
 
 #__next {
@@ -16,6 +19,7 @@
   margin: 0;
   width: 99.99vw;
   text-align: center;
+  font-family: "Bitter" , sans-serif;
 }
 body{
     margin: 0;
@@ -45,23 +49,18 @@ html{
     flex-direction: column;
 }
 
-/* Works on Chrome, Safari, and Opera */
+
 ::-webkit-scrollbar {
-  width: 8px; /* Adjust the width as per your preference */
+  width: 8px; 
 }
 
 ::-webkit-scrollbar-track {
-  background-color: rgb(248, 251, 252); /* Background color */
+  background-color: rgb(248, 251, 252); 
 }
 
 ::-webkit-scrollbar-thumb {
-  background-color: #383c41; /* Thumb color */
+  background-color: #383c41; 
 }
-
-/* Works on Firefox */
-/* Note: Firefox only supports customizing the thumb color */
-/* The width and background of the scrollbar will use the browser's defaults */
-
 * {
   scrollbar-color: #383c41 rgb(248, 251, 252);
   scrollbar-width: thin;

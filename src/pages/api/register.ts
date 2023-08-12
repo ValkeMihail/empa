@@ -1,7 +1,8 @@
 import { NextApiRequest, NextApiResponse } from 'next';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import {EmployeeData, CompanyData, DepartmentData, TokenData} from '../../../types';
+import { setCookie } from 'nookies';
+import {EmployeeData, CompanyData, DepartmentData, TokenData, User} from '../../../types';
 import { connectClient } from '@/utils/mongo';
 import { ObjectId } from 'mongodb';
 
@@ -19,6 +20,7 @@ export default async function createCompany(req: NextApiRequest, res: NextApiRes
 
 
   const db = await connectClient();
+  const usersCol = db.collection<User>('users');
   const employeeCollection = db.collection<EmployeeData>('employees');
   const companyCollection = db.collection<CompanyData>('companies');
   const departmentCollection = db.collection<DepartmentData>('departments');
@@ -41,24 +43,21 @@ export default async function createCompany(req: NextApiRequest, res: NextApiRes
     companyAddress: null,
     companyWebsite: null,
     companyLogo: null,
-    projects: null,
+    projects: [],
     departments: [
       newDepartment._id
     ],
-    employees: null
+    employees: []
   }
 
   const newEmployee : EmployeeData = {
     _id: new ObjectId(),
     employeeName: userName,
     employeeEmail: email,
-    employeeAccesLevel: 'Admin',
     employeeRole: 'Admin',
-    employeePassword: hashedPassword,
     employeeStartDate: new Date().toISOString(),
     employeePhoto: null,
     employeeDepartmentId: newDepartment._id,
-    employeeCompanyId: newCompany._id,
     employeePerformance: null,
     employeeAttributes: null
   }
@@ -71,24 +70,43 @@ export default async function createCompany(req: NextApiRequest, res: NextApiRes
     employees: [newEmployee._id]
   }
 
+  const newUser : User = {
+    employeeId: new ObjectId(),
+    email: email,
+    password: hashedPassword,
+    accesLevel: 'Admin',
+    companyId: newCompany._id
+  }
+
+
+  await usersCol.insertOne(newUser);
   await employeeCollection.insertOne(newEmployee);
   await companyCollection.insertOne(updatedCompany); 
   await departmentCollection.insertOne(updatedDepartment);
 
 
   const tokenData : TokenData = {
-    id: newEmployee._id,
-    email: newEmployee.employeeName,
-    userName: newEmployee.employeeName,
-    accesLevel : newEmployee.employeeRole,
-    companyId: newEmployee.employeeCompanyId
+    id: newUser.employeeId,
+    email: newUser.email,
+    accesLevel : newUser.accesLevel,
+    companyId: newUser.companyId
   }
-
-  console.log(tokenData, " this is from register.ts")
 
   const token = jwt.sign(tokenData, 'your-secret-key', {
     expiresIn: '2h',
   });
+  try {
+    setCookie({ res }, 'token', token, {
+      httpOnly: true,
+      maxAge: 10000,
+      path: '/',
+      sameSite: 'strict'
+    });
+  } catch (error) {
+    console.error('Failed to connect to the database ', error);
+    return res.status(500).json({ message: 'Internal server error' });
+  }
 
-  return res.status(201).json({ token });
+  return res.status(200).json({ message: 'User created' });
+
 }

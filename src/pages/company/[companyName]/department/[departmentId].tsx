@@ -1,41 +1,84 @@
 import { ChartComponent } from "@/components/charts/LineChart";
-import CollapsibleTable from "@/components/table/Table";
+import { EmployeesTable } from "@/components/table/Table";
 import styles from "@/styles/company/department.module.scss";
-import { useRouter } from "next/router";
+import { DepartmentData, EmployeeData } from "@types";
+import { GetServerSideProps } from "next";
+import Image from "next/image";
+
+
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+
+  const { departmentId } = context.query;
+
+  try {
+    
+    const response = await fetch(`http://localhost:3000/api/department/${departmentId}/`);
+    if (response.ok) {
+      const data = await response.json()
+      return {
+        props: {
+          department: data.department,
+          employees : data.employees
+        },
+      };
+    } else {
+      console.error('Error fetching company data:', response.status, response.statusText);
+      return {
+        props: {
+          department: null,
+          employees : null
+        },
+      };
+    }
+  } catch (error) {
+    console.error('Error fetching company data:', error);
+    return {
+      props: {
+        department: null,
+        employees : null
+      },
+    };
+  }
+};
 
 
 
 
 
-const Department = () => {
+type DepartmentProps = {
+  department: DepartmentData;
+  employees : EmployeeData [];
+};
 
-  const departmentId = useRouter().query.departmentId;
+const Department = ({department , employees} : DepartmentProps ) => {
+
 
   return (
     <div className={`${styles.departmentContainer} flexColumn`}>
       <header className={`${styles.departmentHeader} flexRow`}>
         <div className={`${styles.departmentDescription} flexColumn`}>
-          <h1>Mobile Development</h1>
+          <h1>{department.departmentName}</h1>
           <p>
-            The mobile development department is responsible for the development of the mobile
-            applications for the company. It is a department that is growing rapidly and is
-            looking for new employees to join the team.
+            {department.departmentDescription}
           </p>
           <div className={`${styles.departmentHeaderInfo} flexRow`}>
             <div className={`${styles.managerWrap} flexRow`}>
-              <img
+              <Image
+                width={50}
+                height={50}
                 className={styles.managerPhoto}
                 src="https://www.w3schools.com/howto/img_avatar.png"
                 alt="manager photo"
               />
               <div className={`${styles.managerTitleWrap} flexColumn`}>
-                <h5>John Doe</h5>
-                <h6>Manager</h6>
+                <h5>{employees[0].employeeName}</h5>
+                <h6>{employees[0].employeeRole}</h6>
               </div>
             </div>
-            <h5>
-              Department ID: <span>{departmentId}</span>
-            </h5>
+            <h6>
+              Department ID: <span>{department._id.toString()}</span>
+            </h6>
           </div>
         </div>
         <div className={`${styles.departmentChart} flexRow`}>
@@ -48,15 +91,22 @@ const Department = () => {
               { month: "May", performance: 56 },
               { month: "Jun", performance: 55 },
               { month: "Jul", performance: 40 },
+              { month: "Aug", performance: 65 },
+              { month: "Sep", performance: 59 },
+              { month: "Oct", performance: 80 },
+              { month: "Nov", performance: 81 },
+              { month: "Dec", performance: 56 },
             ]}
           />
-          {/* some form of chart that will contain employees stats */}
+        
         </div>
       </header>
       <main className={`${styles.departmentMainContainer} flexColumn`}>
         <h2>Department Members</h2>
-        <CollapsibleTable />
-        {/* table component from mui containing the employees */}
+        <EmployeesTable
+          
+          employees={employees}
+        />
       </main>
     </div>
   );

@@ -1,0 +1,11 @@
+.layout{
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: flex-start;
+  width: 1200px;
+
+  .main{
+    margin-left:17.5rem;
+  }
+}

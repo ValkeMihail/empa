@@ -1,17 +1,21 @@
 [
   {
-    "_id": "departmentId1",
+    "_id": {
+      "$oid": "64cc8b4ac1d4afeb71eaa0b1"
+    },
     "departmentName": "Software Development",
+    "departmentEmployees": [ ],
     "departmentDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget ultricies aliquam, nunc nisl ultrices nunc, vitae al",
-    "departmentPhoto": "https://picsum.photos/id/152/200/200",
-    "departmentEmployees": [ "employeeId1", "employeeId3" ]
+    "departmentPhoto": "https://picsum.photos/id/152/200/200"
   },
 
   {
-    "_id": "departmentId2",
+    "_id": {
+      "$oid": "64cc8b4ac1d4afeb71eaa2bf"
+    },
     "departmentName": "Design",
+    "departmentEmployees": [ ],
     "departmentDescription": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla euismod, nisl eget ultricies aliquam, nunc nisl ultrices nunc, vitae al",
-    "departmentPhoto": "https://picsum.photos/id/152/200/200",
-    "departmentEmployees": [ "employeeId2" ]
+    "departmentPhoto": "https://picsum.photos/id/152/200/200"
   }
 ]

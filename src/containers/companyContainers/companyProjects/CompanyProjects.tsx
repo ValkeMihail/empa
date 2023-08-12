@@ -1,15 +1,24 @@
 
-import CollapsibleTable from "../../../components/table/Table"
+import { ProjectData } from "@types";
+import ProjectsTable from "../../../components/table/Table"
 import styles from "./companyProjects.module.scss"
 
-export const CompanyProjects = () => {
+
+type CompanyProjectsProps = {
+  projects: ProjectData[];
+}
+
+
+export const CompanyProjects = ({projects} : CompanyProjectsProps) => {
 
   return (
     <section className={styles.projectsContainer}>
       <h3>
         Projects  
       </h3>
-      <CollapsibleTable/>
+      <ProjectsTable
+        projects={projects}
+      />
     </section>
   )
 }

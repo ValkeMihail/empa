@@ -11,11 +11,8 @@ export type DepartmentData = {
 
 export type EmployeeData = {
   _id: ObjectId;
-  employeeCompanyId: ObjectId;
-  employeeAccesLevel: string;
   employeeName: string;
   employeeEmail: string;
-  employeePassword: string;
   employeeRole: string;
   employeeStartDate: string;
   employeePhoto: string  | null;
@@ -34,12 +31,17 @@ export type CompanyData =  {
   companyAddress: string | null;
   companyWebsite: string | null;
   companyLogo: string | null;
-  projects: string[] | null;
-  departments: ObjectId[] | null;
-  employees: ObjectId[] | null;
+  projects: ObjectId[] ;
+  departments: ObjectId[];
+  employees: ObjectId[] ;
 }
+
+
+
+
+
 export type TaskData = {
-  id: string;
+  id: ObjectId;
   title: string;
   start: string;
   end: string;
@@ -48,7 +50,7 @@ export type TaskData = {
   url: string;
   interactive: boolean;
   extendedProps: {
-    employeeId: string;
+    assigned: ObjectId[];
     projectId: string;
     description: string;
     status: string;
@@ -58,41 +60,35 @@ export type TaskData = {
 };
 
 export type ProjectData = {
-  _id: string;
+  _id: ObjectId;
   projectName: string;
   projectDescription: string;
-  projectStartDate: string; // You can replace "string" with a more specific date type like "Date" if needed.
-  projectEndDate: string; // You can replace "string" with a more specific date type like "Date" if needed.
+  projectStartDate: string; 
+  projectEndDate: string;
   projectStatus: string;
   projectCompletion: number;
   projectPhoto: string;
   tasks: TaskData[];
-  assigned: string[];
+  assigned: ObjectId[];
 };
 
-
-export type FullCompanyData = {
-  _id: ObjectId;
-  companyName: string;
-  companyEmail: string;
-  companyPhone: string | null;
-  companyAddress: string | null;
-  companyWebsite: string | null;
-  companyLogo: string | null;
-  
-  projects: ProjectData[];
-  departments: DepartmentData[];
-  employees: EmployeeData[];
-}
 
 
 export type TokenData = {
   id: ObjectId,
   email:string;
-  userName: string;
   accesLevel: AccesLevel;
   companyId: ObjectId;
 }
 
 
 export type AccesLevel = string | "admin" | "manager" | "employee";
+
+
+export type User = {
+  employeeId: ObjectId;
+  companyId: ObjectId;
+  email: string;
+  password: string;
+  accesLevel: AccesLevel;
+}

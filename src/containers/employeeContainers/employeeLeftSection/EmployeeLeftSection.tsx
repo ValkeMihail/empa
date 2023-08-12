@@ -1,3 +1,4 @@
+import Image from 'next/image';
 import { EmployeeData } from '../../../../types';
 import { ChartComponent } from '../../../components/charts/LineChart';
 import { RadarChartExample } from '../../../components/charts/RadarChart';
@@ -28,17 +29,28 @@ export const EmployeeLeftSection = ({employeeData} : EmployeeInfoProps ) => {
           </span>
         </div>
           <div className={`${styles.employeeCardRight} flexColumn`}>
-            <img 
-              src={employeeData.employeePhoto}
+            <Image 
+              width={100}
+              height={100}
+              src={employeeData.employeePhoto ?  employeeData.employeePhoto : "https://www.w3schools.com/howto/img_avatar.png"}
               alt="employee photo" 
             />
           </div>
       </div>
         <div className={`${styles.lineChart} flexRow`}>
-          <ChartComponent employeePerformance={employeeData.employeePerformance} />
+          {/* <ChartComponent employeePerformance={employeeData.employeePerformance  ? employeeData.employeePerformance : 
+            [{
+              month: 'January',
+              performance: 4,
+            } ,
+              {
+              month: 'February',
+              performance: 2,
+              }]
+            } /> */}
         </div>
         <div className={styles.radarChart}>
-          <RadarChartExample employeeAttributes={employeeData.employeeAttributes} />                    
+          <RadarChartExample employeeAttributes={employeeData.employeeAttributes as { attribute: string; value: number; }[]} />                    
         </div>
     </section>
 

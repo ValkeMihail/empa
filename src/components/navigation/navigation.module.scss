@@ -1,0 +1,76 @@
+.nav{
+  height: 100vh;
+  width: 17.5rem;
+  align-items: flex-start;
+  justify-content: space-between;
+  background-color: var(--secondary-color-light);
+  position: fixed;
+  padding: 0.6rem  0 ;
+  z-index: 10000;
+
+
+.topNav{
+  width: 100%;
+}
+
+
+
+
+
+  .userWrap {
+    box-sizing: border-box;
+    width: 100%;
+    text-align: start;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 1rem 1.5rem;
+
+    img{
+      border-radius: 50%;
+      width: 3.25rem;
+      height: 3.25rem;
+      object-fit: cover;
+      cursor: pointer;
+    }
+
+
+
+    .titleWrap{
+      p, span{
+        margin: 0;
+        padding: 0;
+      }
+      p{
+        font-size: 1.1rem;
+        font-weight: 900;
+      }
+      span{
+        font-size: 0.8rem;
+        font-weight: 600;
+        font-style: italic;
+      }
+    }
+
+    .icon{
+      align-self: center;
+      cursor: pointer;
+    }
+
+  }
+
+  .linkWrap{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    color: black;
+    text-transform: none !important;
+
+    .icon{
+      margin-right: 0.5rem;
+    }
+  }
+
+}

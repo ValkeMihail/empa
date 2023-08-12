@@ -66,7 +66,6 @@ const RegisterCompany = () => {
       })
       setShowErrors(true);
     } else {
-
       setErrors({
         ...errors!,
         otherError: null
@@ -260,7 +259,7 @@ const RegisterCompany = () => {
             name='userName'
             onChange={handleUserNameChange}
             type="text" 
-            placeholder='Your Name' 
+            placeholder='Your Full Name' 
           />
           <input 
             className={styles.inputEl}

@@ -7,6 +7,23 @@
 
   .priorityAssigneesWrap{
     margin: 1vw 0 0 1vw;
+    justify-content: space-between;
+    padding: 0  1vw 0 0 ;
+
+    .avatarWrap{
+      align-items: center;
+      justify-content: center;
+    }
+    .actions {
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: color, border 0.3s ease-in-out;
+
+      &:hover{
+        color: aqua;
+      }
+    }
   }
 
   .taskHeader{

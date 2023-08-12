@@ -1,8 +1,9 @@
 .departmentContainer{
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  margin-top: 2vh;
   width: 100vw;
-  height: 120vh;
+  height: 95vh;
 
 
   .departmentHeader{
@@ -11,12 +12,11 @@
 
     gap: 1vh;
     width: 80%;
-    height: 50%;
+    height: 70%;
 
 
     .departmentChart{
       align-items: center;
-      border: 1px solid black;
       justify-content: center;
       border-radius: 5vh;    
       width: 70%;
@@ -26,11 +26,9 @@
     .departmentDescription{
 
       position : relative;
-      border-radius: 5vh;
       align-items: flex-start;
       justify-content: flex-start;
       gap: 1vh;
-      border: 1px solid black;
       text-align: left;
       width: 30%;
       height: 100%;
@@ -77,12 +75,11 @@
   }
 
   .departmentMainContainer{
-    margin-top: 1vh;
+    margin-top: 5vh;
     align-items: flex-start;
     justify-content: flex-start;
     width: 80%;
-    height: fit-content ;
-    border: 1px solid black;
+    height: fit-content;
     border-radius: 5vh;
     overflow: hidden;
 

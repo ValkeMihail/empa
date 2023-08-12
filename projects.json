@@ -1,6 +1,9 @@
 [
+  
   {
-    "_id": "projectId1",
+    "_id": {
+      "$oid": "64cc824ac1d4afeb71eaa0b1"
+    },
     "projectName": "Jumblee",
     "projectDescription": "A platform for people to share their ideas and collaborate with others",
     "projectStartDate": "Timestamp",
@@ -8,11 +11,15 @@
     "projectStatus": "In progress",
     "projectCompletion": 40,
     "projectPhoto": "https://picsum.photos/id/112/200/200",
-    "assigned" : [
-      "employeeId1",
-      "employeeId2"
+    "assigned": [
+      {
+        "$oid": "64cc8b4ac1d4afeb712aa0b1"
+      },
+      {
+        "$oid": "64cc8b4ac1d4afeb71ea20b1"
+      }
     ],
-    "tasks": [ 
+    "tasks": [
       {
         "id": "task1",
         "title": "Implement Login Page",
@@ -23,8 +30,12 @@
         "url": "/tasks/task1",
         "interactive": true,
         "extendedProps": {
-          "employeeId": "employeeId1",
-          "projectId": "project1",
+          "employeeId": {
+            "$oid": "64cc8b4acfd4afeb71eaa0b1"
+          },
+          "projectId": {
+            "$oid": "64cc824ac1d4afeb71eaa0b1"
+          },
           "description": "Implement the login page with authentication functionality.",
           "status": "In Progress",
           "priority": "High",
@@ -49,23 +60,28 @@
           "progress": 0
         }
       }
-     ]
+    ]
   },
-
   {
-    "_id": "projectId2",
-    "projectName": "SmartHome",
-    "projectDescription": "A smart home automation system for controlling devices remotely.",
+    "_id": {
+      "$oid": "64cc824ac1d4afeb76eaa2b1"
+    },
+    "projectName": "Token",
+    "projectDescription": "A platform for people to share their ideas and collaborate with others",
     "projectStartDate": "Timestamp",
     "projectEndDate": "Timestamp",
     "projectStatus": "In progress",
-    "projectCompletion": 60,
+    "projectCompletion": 40,
     "projectPhoto": "https://picsum.photos/id/112/200/200",
-    "assigned" : [
-      "employeeId1",
-      "employeeId2"
+    "assigned": [
+      {
+        "$oid": "64cc8b4ac1d4afeb712aa0b1"
+      },
+      {
+        "$oid": "64cc8b4ac1d4afeb71ea20b1"
+      }
     ],
-    "tasks": [ 
+    "tasks": [
       {
         "id": "task1",
         "title": "Implement Login Page",
@@ -76,8 +92,12 @@
         "url": "/tasks/task1",
         "interactive": true,
         "extendedProps": {
-          "employeeId": "employeeId1",
-          "projectId": "project1",
+          "employeeId": {
+            "$oid": "64cc8b4acfd4afeb71eaa0b1"
+          },
+          "projectId": {
+            "$oid": "64cc824ac1d4afeb71eaa0b1"
+          },
           "description": "Implement the login page with authentication functionality.",
           "status": "In Progress",
           "priority": "High",
@@ -102,6 +122,6 @@
           "progress": 0
         }
       }
-     ]
-}
+    ]
+  }
 ]

@@ -1,14 +1,23 @@
 import { ArrowLeft, ArrowRight } from "@mui/icons-material";
-import { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect, Key } from "react";
 import { animateScroll as scroll } from "react-scroll";
 import styles from "./companyDepartments.module.scss";
 import { DepartmentData } from "../../../../types";
+import heroEmployee from "@/assets/hero-employee.png";
+import Image from "next/image";
+import { useRouter }  from "next/router";
+
 
 type CompanyDepartmentsProps = {
   departments: DepartmentData[];
 };
 
 export const CompanyDepartments = ({ departments }: CompanyDepartmentsProps) => {
+
+
+  const router = useRouter();
+
+
   const [departmentsData, setDepartmentsData] = useState([] as DepartmentData[]);
 
   useEffect(() => {
@@ -52,11 +61,14 @@ export const CompanyDepartments = ({ departments }: CompanyDepartmentsProps) => 
           <ArrowRight />
         </button>
         <>
-          {departmentsData.length !== 0 &&
-            departmentsData.map((department) => (
-              <div key={department._id} className={styles.department}>
-                <img
-                  src={department.departmentPhoto}
+          { departmentsData?.map((department) => (
+              <div 
+                onClick={() => {router.push(`/company/${router.query.companyName}/department/${department._id}`)}}
+                key={department._id.toString()} className={styles.department}>
+                <Image
+                  width={200}
+                  height={200}
+                  src={department.departmentPhoto ? department.departmentPhoto : heroEmployee}
                   alt={"department" + department.departmentName}
                 />
                 <h4>{department.departmentName}</h4>

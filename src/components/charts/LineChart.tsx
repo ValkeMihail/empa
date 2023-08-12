@@ -1,5 +1,4 @@
 import { LineChart, Line, XAxis, YAxis,  Tooltip } from 'recharts';
-import styles from  './charts.module.scss';
 
 type ChartComponentProps = {
     employeePerformance: {
@@ -9,10 +8,14 @@ type ChartComponentProps = {
 };
 
 
-export const ChartComponent = ({employeePerformance}:ChartComponentProps) => {
+export const ChartComponent = ( { employeePerformance } : ChartComponentProps ) => {
+  
+  
   const chartId = 'chart-component-id';
+  
+
   return (
-    <LineChart id={chartId} width={300} height={170} data={employeePerformance}>
+    <LineChart id={chartId} width={550} height={400} data={employeePerformance}>
       <XAxis dataKey="month"/>
       <YAxis />
       <Tooltip />
@@ -20,6 +23,10 @@ export const ChartComponent = ({employeePerformance}:ChartComponentProps) => {
         type="monotone"
         dataKey="performance" 
         stroke="#1fd6ff"/>
+        <Line 
+        type="basis"
+        dataKey="performance" 
+        stroke="lightgreen"/>
     </LineChart>
   );
 };

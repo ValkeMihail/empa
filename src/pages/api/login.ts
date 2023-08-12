@@ -1,8 +1,9 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
+import { setCookie } from 'nookies';
 import { NextApiRequest, NextApiResponse } from 'next';
 import { connectClient } from '@/utils/mongo';
-import { EmployeeData, TokenData } from '@types';
+import {  TokenData, User } from '@types';
 
 
 export default async function login(req: NextApiRequest, res: NextApiResponse) {
@@ -11,35 +12,42 @@ export default async function login(req: NextApiRequest, res: NextApiResponse) {
     return res.status(405).json({ message: 'Method not allowed' });
   }
   
+  
   const { email, password } = req.body;
 
   try {
     
     const db = await connectClient();
-    const employeesCol = db.collection<EmployeeData>('employees');
-    const employee = await employeesCol.findOne({ employeeEmail: email });
+    const usersCol = db.collection<User>('users');
+    const user = await usersCol.findOne({ email: email });
 
-    if (!employee) {
+    if (!user) {
       return res.status(401).json({ message: 'User not found' });
-    }
+    }   
+    const passwordMatch = await bcrypt.compare(password, user.password);
 
-    const passwordMatch = await bcrypt.compare(password, employee.employeePassword);
-
-    if (!passwordMatch) {
+    if (passwordMatch) {
       return res.status(401).json({ message: 'Password incorrect' });
     }
     const tokenData : TokenData = {
-      id: employee._id,
-      email: employee.employeeName,
-      userName: employee.employeeName,
-      accesLevel : employee.employeeAccesLevel,
-      companyId: employee.employeeCompanyId,
+      id: user.employeeId,
+      email: user.email,
+      accesLevel : user.accesLevel,
+      companyId: user.companyId,
     }
     const token = jwt.sign(tokenData, 'your-secret-key', {
-      expiresIn: '2h',
+      expiresIn: '20h',
     });
 
-    return res.status(200).json({ token });
+
+    setCookie({ res }, 'token', token, {
+      httpOnly: true,
+      maxAge: 10000,
+      path: '/',
+      sameSite: 'strict'
+    });
+    
+    return res.status(200).json({ message: 'Login successful' });
     
   } catch (error) {
     

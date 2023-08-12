@@ -1,6 +1,6 @@
 import { ArrowUpwardTwoTone, Square } from "@mui/icons-material";
 import { ChartComponent } from "../../../components/charts/LineChart";
-import { Pie, PieChart } from "recharts";
+import { Cell, Pie, PieChart } from "recharts";
 import styles from "./companyHeader.module.scss";
 
 type CompanyHeaderProps = {
@@ -8,6 +8,42 @@ type CompanyHeaderProps = {
   nrOfProjects: number;
   nrOfDepartments: number;
 };
+
+
+
+const data = [
+  { name: "completed", value: 60 },
+  { name: "inProgress", value: 15 },
+  { name: "onHold", value: 15 },
+  { name: "rejected", value: 10 },
+];
+
+const colors = ["yellowgreen","#1fd6ff",  "gold" , "orangered"];
+
+const CustomPieChart = () => {
+  return (
+    <PieChart width={400} height={400}>
+      <Pie
+        dataKey="value"
+        isAnimationActive={true}
+        data={data}
+        cx={175}
+        cy={250}
+        outerRadius={100}
+        label
+      >
+        {data.map((entry, index) => (
+          <Cell key={`cell-${index}`} fill={colors[index % colors.length]} />
+        ))}
+      </Pie>
+    </PieChart>
+  );
+};
+
+
+
+
+
 
 export const CompanyHeader = ({
   nrOfEmployees,
@@ -20,7 +56,7 @@ export const CompanyHeader = ({
         <div className={`${styles.headerStats} flexRow`}>
           <div className={`${styles.stat} flexRow`}>
             <div className={`${styles.arrowStatWrap} flexRow`}>
-              <ArrowUpwardTwoTone />
+              <ArrowUpwardTwoTone sx={{ color : "lightgreen"}}  />
             </div>
             <div className={`${styles.statInfo} flexColumn`}>
               <h3>Employees</h3>
@@ -29,7 +65,7 @@ export const CompanyHeader = ({
           </div>
           <div className={`${styles.stat} flexRow`}>
             <div className={`${styles.arrowStatWrap} flexRow`}>
-              <ArrowUpwardTwoTone />
+              <ArrowUpwardTwoTone sx={{ color : "lightgreen"}}  />
             </div>
             <div className={`${styles.statInfo} flexColumn`}>
               <h3>Total Projects</h3>
@@ -38,7 +74,7 @@ export const CompanyHeader = ({
           </div>
           <div className={`${styles.stat} flexRow`}>
             <div className={`${styles.arrowStatWrap} flexRow`}>
-              <ArrowUpwardTwoTone />
+              <ArrowUpwardTwoTone sx={{ color : "lightgreen"}}  />
             </div>
             <div className={`${styles.statInfo} flexColumn`}>
               <h3>Departments</h3>
@@ -52,11 +88,11 @@ export const CompanyHeader = ({
             <h3>Performance Overview</h3>
             <div className={`${styles.yearsWrap} flexRow`}>
               <div className={`${styles.yearWrap} flexRow`}>
-                <Square />
+                <Square sx = {{ color : "lightgreen" }} />
                 <p>This year</p>
               </div>
               <div className={`${styles.yearWrap} flexRow`}>
-                <Square />
+                <Square sx={ { color : "#1fd6ff" }} />
                 <p>Last year</p>
               </div>
             </div>
@@ -71,6 +107,11 @@ export const CompanyHeader = ({
                 { month: "May", performance: 56 },
                 { month: "Jun", performance: 55 },
                 { month: "Jul", performance: 40 },
+                { month: "Aug", performance: 79 },
+                { month: "Sep", performance: 81 },
+                { month: "Oct", performance: 56 },
+                { month: "Nov", performance: 55 },
+                { month: "Dec", performance: 40 },
               ]}
             />
           </div>
@@ -79,48 +120,30 @@ export const CompanyHeader = ({
 
       <section className={`${styles.rightHeader} flexColumn`}>
         <div className={`${styles.flexRow}`}>
-          <PieChart width={400} height={400}>
-            <Pie
-              dataKey="value"
-              isAnimationActive={false}
-              data={[
-                { name: "Group A", value: 400 },
-                { name: "Group B", value: 300 },
-                { name: "Group C", value: 300 },
-                { name: "Group D", value: 200 },
-                { name: "Group E", value: 278 },
-                { name: "Group F", value: 189 },
-              ]}
-              cx={200}
-              cy={200}
-              outerRadius={80}
-              fill="orangered"
-              label
-            />
-          </PieChart>
+          <CustomPieChart/>
         </div>
 
         <div className={`${styles.headerStatsGraph} flexRow`}>
           <div className={`${styles.chartStats} flexRow`}>
             <div className={`${styles.statsWrap} flexColumn`}>
               <div className={`${styles.statWrap} flexRow`}>
-                <Square />
-                <p>Completed 10%</p>
+                <Square sx={{ width: 20, height: 20, bgcolor: colors[0], color  : colors[0] }} />
+                <p>{`Completed ${data[0].value}%`}</p>
               </div>
               <div className={`${styles.statWrap} flexRow`}>
-                <Square />
-                <p>In Progress 20%</p>
+                <Square sx={{ width: 20, height: 20, bgcolor: colors[1], color  : colors[1] }} />
+                <p>{`In Progress ${data[1].value}%`}</p>
               </div>
             </div>
 
             <div className={`${styles.statsWrap} flexColumn`}>
               <div className={`${styles.statWrap} flexRow`}>
-                <Square />
-                <p>On Hold 60%</p>
+                <Square sx={{ width: 20, height: 20, bgcolor: colors[2], color  : colors[2] }} />
+                <p>{`On Hold ${data[2].value}%`}</p>
               </div>
               <div className={`${styles.statWrap} flexRow`}>
-                <Square />
-                <p>Rejected 10%</p>
+                <Square sx={{ width: 20, height: 20, bgcolor: colors[3], color  : colors[3] }}/>
+                <p>{`Rejected ${data[3].value}%`}</p>
               </div>
             </div>
           </div>

@@ -13,7 +13,7 @@ type EmployeeHeaderProps = {
 };
 
 
-export const EmployeeHeader = ({employeeData ,recentProjectData, tasks } : EmployeeHeaderProps ) => {
+export const EmployeeHeader = ({employeeData , recentProjectData, tasks } : EmployeeHeaderProps ) => {
 
 
   return(
